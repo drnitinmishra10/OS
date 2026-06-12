@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to OS - Interactive Quiz</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --correct: #10b981;
+            --incorrect: #ef4444;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .quiz-info {
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+
+        .question-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .question-text {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 16px;
+        }
+
+        .options-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .option-item {
+            margin-bottom: 12px;
+        }
+
+        .option-item:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+
+        label:hover {
+            background-color: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+
+        input[type="radio"] {
+            margin-right: 12px;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+        }
+
+        /* Result Classes toggled by JS */
+        .correct-answer {
+            background-color: #ecfdf5 !important;
+            border-color: var(--correct) !important;
+            color: #065f46;
+            font-weight: 600;
+        }
+
+        .incorrect-answer {
+            background-color: #fef2f2 !important;
+            border-color: var(--incorrect) !important;
+            color: #991b1b;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .submit-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        #result-box {
+            display: none;
+            background: #eff6ff;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #result-box h2 {
+            color: var(--primary);
+            margin-top: 0;
+        }
+
+        .score-display {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 15px 0;
+            color: var(--text);
+        }
+
+        .explanation {
+            margin-top: 12px;
+            font-size: 0.95rem;
+            color: #475569;
+            display: none;
+            padding-top: 12px;
+            border-top: 1px dashed var(--border);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Introduction to Operating Systems</h1>
+        <p class="quiz-info">Test your foundational knowledge. 25 Questions | Multiple Choice</p>
+    </header>
+
+    <form id="quiz-form">
+        <div id="questions-container"></div>
+
+        <div class="btn-container">
+            <button type="submit" class="submit-btn" id="submit-quiz">Submit Quiz</button>
+        </div>
+    </form>
+
+    <div id="result-box">
+        <h2>Quiz Completed!</h2>
+        <p>Your Final Score is:</p>
+        <div class="score-display"><span id="score-out-of">0</span> / 25</div>
+        <p id="score-feedback"></p>
+        <button onclick="window.location.reload();" class="submit-btn" style="padding: 10px 20px; font-size: 1rem; margin-top: 15px;">Retry Quiz</button>
+    </div>
+</div>
+
+<script>
+    // Quiz Data Array
+    const quizData = [
+        {
+            q: "What is the primary purpose of an Operating System?",
+            a: ["To build web applications", "To provide an interface between the user and the computer hardware", "To perform high-speed mathematical calculations", "To protect the computer from physical damage"],
+            correct: 1,
+            exp: "The primary job of an OS is to act as an intermediary layer between user/software applications and the underlying raw system hardware."
+        },
+        {
+            q: "Which of the following is considered the core component of an Operating System?",
+            a: ["Command Prompt", "Kernel", "File Explorer", "Registry"],
+            correct: 1,
+            exp: "The Kernel is the central, core component of an OS that manages system resources and communication between hardware and software."
+        },
+        {
+            q: "What is a 'Process' in OS terminology?",
+            a: ["A program stored in secondary memory", "A program in execution", "A hardware component", "A type of text editor"],
+            correct: 1,
+            exp: "While a program is passive data on a disk, a process is an active 'program in execution' loaded into RAM."
+        },
+        {
+            q: "Which type of OS is designed to respond to events within a strict, predictable time constraint?",
+            a: ["Batch Processing OS", "Time-sharing OS", "Real-Time OS (RTOS)", "Distributed OS"],
+            correct: 2,
+            exp: "Real-Time Operating Systems are used where strict time constraints are crucial, such as in missile defense systems or medical equipment."
+        },
+        {
+            q: "What mechanism allows an OS to handle urgent external hardware events?",
+            a: ["System Call", "Interrupt", "Threading", "Caching"],
+            correct: 1,
+            exp: "An interrupt is a signal sent to the CPU by hardware or software indicating an event that requires immediate attention."
+        },
+        {
+            q: "What is the process of loading the operating system into a computer's main memory called?",
+            a: ["Flashing", "Formatting", "Booting", "Caching"],
+            correct: 2,
+            exp: "Booting (or bootstrapping) is the initial set of operations that a computer system performs when electrical power is switched on."
+        },
+        {
+            q: "Where is the basic input/output system (BIOS) typically stored?",
+            a: ["RAM", "Hard Disk Drive", "ROM / Flash Memory", "Cache Memory"],
+            correct: 2,
+            exp: "BIOS is non-volatile firmware stored on a ROM or Flash memory chip on the motherboard."
+        },
+        {
+            q: "What is 'Multiprogramming'?",
+            a: ["Executing multiple programs simultaneously on multiple CPUs", "Keeping multiple processes in main memory ready to execute by a single CPU", "Writing code in multiple programming languages", "An old word for internet browsing"],
+            correct: 1,
+            exp: "Multiprogramming increases CPU utilization by organizing jobs so that the single CPU always has at least one program to execute out of main memory."
+        },
+        {
+            q: "Which architectural state protects the hardware from unauthorized user modifications?",
+            a: ["Single-user mode", "Dual-mode operation (User / Kernel mode)", "Safe Mode", "Multi-threaded mode"],
+            correct: 1,
+            exp: "Dual-mode operation uses a 'mode bit' to distinguish between User Mode (restricted access) and Kernel/Monitor Mode (unrestricted hardware access)."
+        },
+        {
+            q: "What is a 'System Call'?",
+            a: ["A phone call to technical support", "The programmatic interface provided by the OS to request services from the kernel", "A method to reboot the system", "An API call to a remote cloud server"],
+            correct: 1,
+            exp: "System calls provide an interface to the services made available by an operating system to user programs."
+        },
+        {
+            q: "In memory management, what does 'Virtual Memory' achieve?",
+            a: ["Increases the physical size of RAM chips", "Allows execution of processes that may not be completely in main memory by using disk space", "Speeds up the CPU execution time", "Saves power consumption"],
+            correct: 1,
+            exp: "Virtual memory maps user-visible virtual addresses to physical addresses, simulating larger RAM using storage space."
+        },
+        {
+            q: "What component is responsible for allocating CPU time to different ready processes?",
+            a: ["Device Driver", "File System manager", "CPU Scheduler", "Memory Management Unit"],
+            correct: 2,
+            exp: "The CPU Scheduler selects from among the processes in memory that are ready to execute and allocates the CPU to one of them."
+        },
+        {
+            q: "What state is a process in if it is waiting to be assigned to a processor?",
+            a: ["New", "Running", "Ready", "Waiting/Blocked"],
+            correct: 2,
+            exp: "The 'Ready' state means the process has all required resources and is merely waiting for its turn on the CPU."
+        },
+        {
+            q: "What is a 'Thread'?",
+            a: ["A lightweight process and basic unit of CPU utilization", "A connection cable between CPU and RAM", "A security vulnerability", "A system diagnostic tool"],
+            correct: 0,
+            exp: "A thread is a basic unit of CPU utilization; it comprises a thread ID, a program counter, a register set, and a stack, sharing code/data with other threads of the same process."
+        },
+        {
+            q: "Which of the following is a classic problem of process synchronization where a permanent waiting state occurs?",
+            a: ["Thrashing", "Deadlock", "Context Switching", "Fragmentation"],
+            correct: 1,
+            exp: "A deadlock is a situation where two or more processes are blocked permanently because each process is holding a resource and waiting for another resource held by someone else."
+        },
+        {
+            q: "What is 'GUI' in Operating Systems?",
+            a: ["Graphical User Interface", "General Utility Intersection", "Gigabit User Integration", "Global Unique Identifier"],
+            correct: 0,
+            exp: "GUI stands for Graphical User Interface, allowing users to interact with the OS using visual items like windows, icons, and menus."
+        },
+        {
+            q: "Which CPU scheduling algorithm gives priority to the process with the smallest execution time?",
+            a: ["First-Come, First-Served (FCFS)", "Round Robin (RR)", "Shortest Job First (SJF)", "Priority Scheduling"],
+            correct: 2,
+            exp: "SJF (Shortest Job First) associates the length of the next CPU burst with each process, choosing the shortest one to run next."
+        },
+        {
+            q: "What is 'Thrashing' in memory management?",
+            a: ["Deleting temporary files permanently", "High paging activity where the system spends more time swapping pages than executing instructions", "Physically cleaning dust from components", "Overclocking the system processor"],
+            correct: 1,
+            exp: "Thrashing occurs when a computer's virtual memory subsystem is constantly in a state of paging, rapidly inhibiting overall system performance."
+        },
+        {
+            q: "Which of the following is a non-preemptive scheduling algorithm?",
+            a: ["Round Robin", "First-Come, First-Served (FCFS)", "Shortest Remaining Time First", "Preemptive Priority"],
+            correct: 1,
+            exp: "In FCFS, once the CPU has been allocated to a process, that process keeps the CPU until it releases it, either by terminating or by requesting I/O."
+        },
+        {
+            q: "What does the abbreviation 'SPOOLING' stand for?",
+            a: ["System Parallel Operation On-Line Lineup", "Simultaneous Peripheral Operations On-Line", "Sequential Program Orientation Organized Linearly", "Standard Processor Output Over Layout Instruction"],
+            correct: 1,
+            exp: "SPOOLING (Simultaneous Peripheral Operations On-Line) intercepts data intended for a peripheral device (like a printer) and places it on temporary storage."
+        },
+        {
+            q: "What is the function of a device driver?",
+            a: ["To power up external hardware devices physically", "To provide a standard command interface between the OS and a specific hardware device", "To speed up internet connectivity", "To back up local user hard drives"],
+            correct: 1,
+            exp: "Device drivers are specific software implementations allowing the operating system to interact smoothly with specialized hardware devices."
+        },
+        {
+            q: "Which file system structure is commonly used by modern Windows Operating Systems?",
+            a: ["EXT4", "FAT16", "NTFS", "HFS+"],
+            correct: 2,
+            exp: "NTFS (New Technology File System) is the default and standard file system structure utilized by modern Windows operating systems."
+        },
+        {
+            q: "What is the main drawback of the 'First-Come, First-Served' (FCFS) scheduling algorithm?",
+            a: ["It is too complex to implement", "Convoy Effect (long processes delay short processes behind them)", "It leads to high cache misses", "It causes massive data corruption"],
+            correct: 1,
+            exp: "The Convoy Effect occurs when several short processes wait for one long process to release the CPU, leading to poor resource utilization."
+        },
+        {
+            q: "What is 'Time Sharing' in an Operating System?",
+            a: ["Sharing the computer clock with internet servers", "An extension of multiprogramming where the CPU executes multiple jobs by switching among them very frequently", "Allowing users to use computers only at specified times", "Dividing the hard drive space into equal sections"],
+            correct: 1,
+            exp: "Time sharing (multitasking) allows many users to share computer resources simultaneously via rapid context switching."
+        },
+        {
+            q: "Which of these is NOT a resource managed directly by the Operating System?",
+            a: ["Memory (RAM)", "CPU Cycles", "User's cognitive thoughts", "I/O Hardware Devices"],
+            correct: 2,
+            exp: "The OS manages system hardware/software components (CPU, RAM, Files, Devices). Human thoughts are outside its reach (for now!)."
+        }
+    ];
+
+    // Render Quiz Questions
+    const container = document.getElementById('questions-container');
+    
+    quizData.forEach((item, qIdx) => {
+        const card = document.createElement('div');
+        card.className = 'question-card';
+        card.id = `q-card-${qIdx}`;
+        
+        const qText = document.createElement('p');
+        qText.className = 'question-text';
+        qText.innerText = `${qIdx + 1}. ${item.q}`;
+        card.appendChild(qText);
+        
+        const optionsList = document.createElement('ul');
+        optionsList.className = 'options-list';
+        
+        item.a.forEach((option, oIdx) => {
+            const li = document.createElement('li');
+            li.className = 'option-item';
+            
+            const label = document.createElement('label');
+            label.setAttribute('for', `q-${qIdx}-o-${oIdx}`);
+            label.id = `label-q-${qIdx}-o-${oIdx}`;
+            
+            const radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = `question-${qIdx}`;
+            radio.id = `q-${qIdx}-o-${oIdx}`;
+            radio.value = oIdx;
+            radio.required = true; // Ensures users select answers before submission
+            
+            label.appendChild(radio);
+            label.appendChild(document.createTextNode(option));
+            li.appendChild(label);
+            optionsList.appendChild(li);
+        });
+        
+        card.appendChild(optionsList);
+        
+        const expDiv = document.createElement('div');
+        expDiv.className = 'explanation';
+        expDiv.id = `exp-${qIdx}`;
+        expDiv.innerHTML = `<strong>Explanation:</strong> ${item.exp}`;
+        card.appendChild(expDiv);
+        
+        container.appendChild(card);
+    });
+
+    // Handle Form Submission
+    document.getElementById('quiz-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        let score = 0;
+        
+        quizData.forEach((item, qIdx) => {
+            const selectedRadio = document.querySelector(`input[name="question-${qIdx}"]:checked`);
+            const explanationDiv = document.getElementById(`exp-${qIdx}`);
+            
+            // Show all explanations
+            explanationDiv.style.display = 'block';
+            
+            // Disable all radio buttons after submission
+            const inputs = document.querySelectorAll(`input[name="question-${qIdx}"]`);
+            inputs.forEach(input => input.disabled = true);
+            
+            if (selectedRadio) {
+                const userAnswer = parseInt(selectedRadio.value);
+                
+                if (userAnswer === item.correct) {
+                    score++;
+                    // Highlight selected correct answer
+                    document.getElementById(`label-q-${qIdx}-o-${userAnswer}`).classList.add('correct-answer');
+                } else {
+                    // Highlight selected incorrect answer
+                    document.getElementById(`label-q-${qIdx}-o-${userAnswer}`).classList.add('incorrect-answer');
+                    // Highlight the actual correct answer for correction
+                    document.getElementById(`label-q-${qIdx}-o-${item.correct}`).classList.add('correct-answer');
+                }
+            }
+        });
+        
+        // Show Results
+        document.getElementById('score-out-of').innerText = score;
+        const feedback = document.getElementById('score-feedback');
+        
+        if (score === 25) {
+            feedback.innerText = "Perfect! You have fully mastered the fundamentals of Operating Systems! 🎉";
+            feedback.style.color = "var(--correct)";
+        } else if (score >= 18) {
+            feedback.innerText = "Great job! You have a solid grasp of OS architectures and processes. 👍";
+            feedback.style.color = "var(--primary)";
+        } else if (score >= 12) {
+            feedback.innerText = "Good effort! Go through the highlighted corrections and explanations to strengthen your core concepts. 📖";
+            feedback.style.color = "#d97706";
+        } else {
+            feedback.innerText = "Keep learning! Operating systems can be complex. Review the missed concepts and try again! 💪";
+            feedback.style.color = "var(--incorrect)";
+        }
+        
+        document.getElementById('result-box').style.display = 'block';
+        
+        // Scroll smoothly to results window
+        document.getElementById('result-box').scrollIntoView({ behavior: 'smooth' });
+        
+        // Hide submit button
+        document.getElementById('submit-quiz').style.display = 'none';
+    });
+</script>
+
+</body>
+</html>
