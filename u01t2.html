@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Notes: Generations of Operating Systems - Dr. Nitin Mishra</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #1a365d;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        h1 { margin: 0; font-size: 24px; }
+        h2 { color: #2c5282; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-top: 30px; }
+        h3 { color: #2b6cb0; margin-top: 20px; margin-bottom: 5px; }
+        .meta-info {
+            font-style: italic;
+            color: #e2e8f0;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        .gen-card {
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .gen-badge {
+            display: inline-block;
+            background-color: #2b6cb0;
+            color: white;
+            padding: 3px 10px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+        .tech-stack {
+            background-color: #f7fafc;
+            border-left: 3px solid #4a5568;
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Unit 1: Introduction to Operating Systems</h1>
+    <div class="meta-info">Lecture Notes by Dr. Nitin Mishra</div>
+</header>
+
+<section>
+    <h2>Generations of Operating Systems</h2>
+    <p>The progression of operating systems is deeply tied to concurrent breakthroughs in underlying hardware technology. We classify this evolution into four distinct generations:</p>
+
+    <div class="gen-card">
+        <span class="gen-badge">First Generation (1945 – 1955)</span>
+        <h3>Vacuum Tubes and Plugboards</h3>
+        <div class="tech-stack">
+            <strong>Key Technology:</strong> Vacuum Tubes, Plugboards, Paper Tapes.<br>
+            <strong>OS Status:</strong> No Operating System.
+        </div>
+        <p>During this post-war era, electronic digital computers were giant rooms of fragile hardware. Systems were programmed strictly by a single individual setting thousands of physical switches or wiring complex plugboards.</p>
+        <ul>
+            <li>All programs were written in absolute <strong>machine language</strong>.</li>
+            <li>Sign-up sheets were used to reserve time slots; code execution was entirely manual.</li>
+            <li>Core concepts like programming languages, compilers, and system routines did not exist.</li>
+        </ul>
+    </div>
+
+    <div class="gen-card">
+        <span class="gen-badge">Second Generation (1955 – 1965)</span>
+        <h3>Transistors and Batch Systems</h3>
+        <div class="tech-stack">
+            <strong>Key Technology:</strong> Transistors, Magnetic Tapes, Punch Cards.<br>
+            <strong>OS Status:</strong> Early Batch Processing (FMS, IBSYS).
+        </div>
+        <p>The commercial introduction of transistors greatly increased reliability and reduced size. To optimize high setup costs and tackle the "human-in-the-loop" speed bottleneck, the <strong>Batch Operating System</strong> was introduced.</p>
+        <ul>
+            <li>Programmers wrote code on punch cards, which operators collected into physical card groups or "batches."</li>
+            <li>An early control program read batches onto a high-speed magnetic tape, processed them sequentially on a main frame computer (like the IBM 7094), and wrote output onto another tape for off-line printing.</li>
+            <li><strong>Drawback:</strong> The CPU sat idle for massive stretches while slow mechanical tape drives read or wrote data.</li>
+        </ul>
+    </div>
+
+    <div class="gen-card">
+        <span class="gen-badge">Third Generation (1965 – 1980)</span>
+        <h3>Integrated Circuits (ICs) and Multiprogramming</h3>
+        <div class="tech-stack">
+            <strong>Key Technology:</strong> Integrated Circuits (ICs), Hard Disks.<br>
+            <strong>OS Status:</strong> Multiprogramming and Time-sharing Systems (OS/360, early UNIX).
+        </div>
+        <p>The dawn of ICs allowed a single computer chip to hold dozens of transistors. This generation fundamentally solved the CPU idle-time dilemma by restructuring system resource scheduling architectures:</p>
+        <ul>
+            <li><strong>Multiprogramming:</strong> The main memory was partitioned to host multiple active programs simultaneously. When Job A paused to wait for an I/O operation, the CPU immediately switched to process Job B.</li>
+            <li><strong>Spooling (Simultaneous Peripheral Operations On-Line):</strong> Direct disk reading allowed jobs to be cached onto disk directly from punch cards as soon as they were dropped off, keeping the job pool dynamic.</li>
+            <li><strong>Time-Sharing:</strong> A breakthrough variant where multiple interactive users had terminals attached to a central CPU. The OS provided tiny runtime slices (quanta), switching so quickly that each user felt they had an isolated, private machine.</li>
+        </ul>
+    </div>
+
+    <div class="gen-card">
+        <span class="gen-badge">Fourth Generation (1980 – Present)</span>
+        <h3>Microprocessors and Personal Computing</h3>
+        <div class="tech-stack">
+            <strong>Key Technology:</strong> LSI/VLSI Microprocessors, Personal Computers (PCs), Networks.<br>
+            <strong>OS Status:</strong> GUI-based, Network, Distributed, and Mobile Operating Systems.
+        </div>
+        <p>Large Scale Integration (LSI) condensed thousands of transistors onto a single silicon wafer, birthing the microcomputer era. Computing moved away from massive isolated server hubs straight to individual desks and pockets.</p>
+        <ul>
+            <li>Development of rich <strong>Graphical User Interfaces (GUIs)</strong> like Macintosh and Windows, shifting computing away from command lines.</li>
+            <li><strong>Network & Distributed OS:</strong> Computers were no longer isolated; systems gained networking stacks to share files, manage distributed cloud queries, and handle remote logins transparently.</li>
+            <li><strong>Modern Era Shift:</strong> Migration into mobile architectures (iOS, Android) and hyper-efficient virtualization backends.</li>
+        </ul>
+    </div>
+</section>
+
+</body>
+</html>

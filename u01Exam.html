@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 1 Review: Important Questions & Concepts - Dr. Nitin Mishra</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #1a365d;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        h1 { margin: 0; font-size: 24px; }
+        h2 { color: #2c5282; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-top: 30px; }
+        h3 { color: #2b6cb0; margin-top: 20px; margin-bottom: 10px; }
+        .meta-info {
+            font-style: italic;
+            color: #e2e8f0;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        .question-card {
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .q-number {
+            font-weight: bold;
+            color: #c53030;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+        .tip-box {
+            background-color: #f0fff4;
+            border-left: 4px solid #38a169;
+            padding: 12px 15px;
+            margin-top: 10px;
+            font-size: 14px;
+            border-radius: 0 6px 6px 0;
+        }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 6px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Unit 1: Introduction to Operating Systems</h1>
+    <div class="meta-info">Review & Examination Prep - Dr. Nitin Mishra</div>
+</header>
+
+<section>
+    <h2>Core Examination Questions (Long Answer Type)</h2>
+    <p>When preparing for terminal evaluations, ensure you can thoroughly explain and draft architectural breakdowns for the following problems:</p>
+
+    <div class="question-card">
+        <span class="q-number">Question 1</span>
+        <h3>Differentiate between Monolithic and Microkernel OS structures. Discuss the trade-offs regarding performance and reliability.</h3>
+        <p><strong>Key Elements to Answer:</strong></p>
+        <ul>
+            <li>Define where the primary OS services (file systems, device drivers) reside—Kernel Space for Monolithic vs. User Space for Microkernel.</li>
+            <li>Explain the communication mechanism: direct functional call branches versus explicit message passing via Inter-Process Communication (IPC).</li>
+            <li>Address the performance vs. stability trade-off: Monolithic is fast but fragile; Microkernel is highly secure and fault-tolerant but introduces message-switching overhead.</li>
+        </ul>
+    </div>
+
+    <div class="question-card">
+        <span class="q-number">Question 2</span>
+        <h3>What is a System Call? Explain the precise hardware and software sequence that occurs when a user application requests data from a storage drive.</h3>
+        <p><strong>Key Elements to Answer:</strong></p>
+        <ul>
+            <li>Define the switch from User Mode (mode bit = 1) to Kernel Mode (mode bit = 0).</li>
+            <li>Explain the role of a trap/software interrupt instruction.</li>
+            <li>Describe how the system indexes into the System Call Vector Table based on an assigned system call number.</li>
+        </ul>
+    </div>
+
+    <div class="question-card">
+        <span class="q-number">Question 3</span>
+        <h3>Distinguish between Hard Real-Time Systems and Soft Real-Time Systems with clear real-world deployment examples.</h3>
+        <p><strong>Key Elements to Answer:</strong></p>
+        <ul>
+            <li>Hard Real-Time: Stringent deadlines where missing a time slot equates to a total structural crash (e.g., anti-lock braking systems, flight controls).</li>
+            <li>Soft Real-Time: Prioritized scheduling where missing a deadline causes acceptable performance degradation but not system failure (e.g., digital audio streaming platforms).</li>
+        </ul>
+    </div>
+</section>
+
+<section>
+    <h2>Dr. Mishra's Exam Tips</h2>
+    <div class="tip-box">
+        <strong>Important Blueprint Tip:</strong> Whenever explaining <em>Layered</em> or <em>Microkernel</em> architectures, always draw the architectural layout blocks showing User Space, Kernel Space, and the Hardware layer. In evaluation blueprints, architectural diagrams carry substantial structural weight alongside formal text explanations.
+    </div>
+</section>
+
+</body>
+</html>

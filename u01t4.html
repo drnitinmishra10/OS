@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Notes: OS Services & System Calls - Dr. Nitin Mishra</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #1a365d;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        h1 { margin: 0; font-size: 24px; }
+        h2 { color: #2c5282; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-top: 30px; }
+        h3 { color: #2b6cb0; margin-top: 20px; margin-bottom: 10px; }
+        .meta-info {
+            font-style: italic;
+            color: #e2e8f0;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        .content-box {
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+        .callout {
+            background-color: #f7fafc;
+            border-left: 4px solid #4a5568;
+            padding: 12px 18px;
+            margin: 15px 0;
+            font-family: Consolas, Monaco, monospace;
+            font-size: 14px;
+        }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+        strong { color: #1a202c; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Unit 1: Introduction to Operating Systems</h1>
+    <div class="meta-info">Lecture Notes by Dr. Nitin Mishra</div>
+</header>
+
+<section>
+    <h2>1. Operating System Services</h2>
+    <p>An operating system provides an environment for the execution of programs. It offers a set of core services that can be split into two main operational categories: functions that directly assist user programs, and functions designed to ensure efficient system operations.</p>
+    
+    <div class="content-box">
+        <h3>Services for the User/Programmer:</h3>
+        <ul>
+            <li><strong>User Interface (UI):</strong> Almost all operating systems have a user interface. This can be a Command-Line Interface (CLI), a Batch Interface, or a Graphical User Interface (GUI).</li>
+            <li><strong>Program Execution:</strong> The system must be able to load a program into memory, execute it, run it to its conclusion, or terminate it normally or abnormally.</li>
+            <li><strong>I/O Operations:</strong> A running program may require I/O, which may involve a file or an I/O device. For efficiency and security, users cannot control I/O devices directly; the OS must provide a means to do so.</li>
+            <li><strong>File-System Manipulation:</strong> Programs need to read, write, create, delete, search, and list files or directories, as well as manage access permissions.</li>
+            <li><strong>Communications:</strong> Processes often need to exchange information. This can happen between processes running on the same computer or between processes on different computers over a network (via shared memory or message passing).</li>
+            <li><strong>Error Detection:</strong> The OS needs to be constantly aware of possible errors. It must check for hardware failures (like memory errors or power drops) and software bugs (like arithmetic overflow or illegal memory access) and take appropriate defensive action.</li>
+        </ul>
+    </div>
+
+    <div class="content-box">
+        <h3>Services for System Efficiency:</h3>
+        <ul>
+            <li><strong>Resource Allocation:</strong> When multiple jobs are running concurrently, resources (CPU cycles, main memory, storage, peripheral devices) must be allocated to each of them dynamically.</li>
+            <li><strong>Accounting:</strong> Keeping track of which users use how much and what kinds of computer resources, useful for billing or system optimization.</li>
+            <li><strong>Protection and Security:</strong> Ensuring that all access to system resources is controlled and isolated. Security requires authenticating users and protecting external I/O devices from unauthorized access.</li>
+        </ul>
+    </div>
+</section>
+
+<section>
+    <h2>2. System Calls</h2>
+    <p><strong>System Calls</strong> provide the essential interface between a running application program and the operating system kernel. They are the programmatic gatekeepers that allow user space applications to safely request privileged operations from kernel space.</p>
+    
+    <h3>The Dual-Mode Mechanism</h3>
+    <p>To prevent user programs from accidentally or maliciously destroying the system, modern CPUs support at least two execution states controlled by a hardware mode bit:</p>
+    <ul>
+        <li><strong>User Mode (Mode bit = 1):</strong> The CPU executes code with restricted privileges. Attempting direct hardware access triggers a system trap.</li>
+        <li><strong>Kernel/Supervisor Mode (Mode bit = 0):</strong> The CPU has complete, unrestricted access to all physical hardware instructions and memory spaces.</li>
+    </ul>
+
+    <div class="callout">
+        <strong>How a System Call Works:</strong><br>
+        1. User Application calls an API function (e.g., printf() or open()).<br>
+        2. The API triggers a software trap/interrupt instruction.<br>
+        3. Hardware switches from User Mode to Kernel Mode (mode bit becomes 0).<br>
+        4. The OS indexes into a System Call Table to execute the requested kernel logic.<br>
+        5. Once completed, the OS reverts the mode bit back to 1 and returns control to the program.
+    </div>
+
+    <h3>Types of System Calls</h3>
+    <p>System calls can be grouped roughly into five major categories:</p>
+    <ol>
+        <li><strong>Process Control:</strong> <code>fork()</code>, <code>exec()</code>, <code>exit()</code>, <code>wait()</code> — used to manage execution states, end running jobs, or create new parallel tasks.</li>
+        <li><strong>File Management:</strong> <code>open()</code>, <code>read()</code>, <code>write()</code>, <code>close()</code> — used to read, write, create, or navigate file hierarchies.</li>
+        <li><strong>Device Management:</strong> <code>ioctl()</code>, <code>read()</code>, <code>write()</code> — used to request, read from, or release hardware devices like disks or terminals.</li>
+        <li><strong>Information Maintenance:</strong> <code>getpid()</code>, <code>time()</code> — used to transfer metrics, time parameters, and identity data between the system and user programs.</li>
+        <li><strong>Communications:</strong> <code>pipe()</code>, <code>shmget()</code>, <code>socket()</code> — used to construct inter-process communication pipelines or open network sockets.</li>
+    </ol>
+</section>
+
+</body>
+</html>

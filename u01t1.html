@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Notes: Concept of Operating Systems - Dr. Nitin Mishra</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #1a365d;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        h1 { margin: 0; font-size: 24px; }
+        h2 { color: #2c5282; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-top: 30px; }
+        h3 { color: #4a5568; }
+        .meta-info {
+            font-style: italic;
+            color: #e2e8f0;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        .highlight-box {
+            background-color: #ebf8ff;
+            border-left: 4px solid #3182ce;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .grid-container {
+            display: flex;
+            justify-content: space-between;
+            background: #fff;
+            padding: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .grid-col { flex: 1; padding: 0 10px; }
+        .grid-col:first-child { border-right: 1px solid #e2e8f0; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+        code {
+            background-color: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Unit 1: Introduction to Operating Systems</h1>
+    <div class="meta-info">Lecture Notes by Dr. Nitin Mishra</div>
+</header>
+
+<section>
+    <h2>1. What is an Operating System?</h2>
+    <p>An <strong>Operating System (OS)</strong> is a system software that acts as an intermediary, resource manager, and control coordinator between the computer hardware and the end-user or application programs.</p>
+    
+    <div class="highlight-box">
+        <strong>Core Abstract View:</strong><br>
+        <code>User &lt;---&gt; Application Programs &lt;---&gt; Operating System &lt;---&gt; Hardware</code>
+    </div>
+    
+    <p>Without an OS, every application developer would have to write low-level machine code to interact directly with the hard disk, CPU registers, and RAM, making computing highly inefficient and prone to system-wide crashes.</p>
+</section>
+
+<section>
+    <h2>2. Dual Goals of an Operating System</h2>
+    <p>An OS is designed with two fundamental, often competing objectives in mind:</p>
+    <ul>
+        <li><strong>Convenience (User View):</strong> To provide an intuitive, abstract, and user-friendly environment (via GUI or CLI) so that users can execute programs easily without worrying about low-level hardware configurations.</li>
+        <li><strong>Efficiency (System View):</strong> To ensure that computer hardware resources—such as CPU cycles, memory blocks, and I/O devices—are utilized to their maximum potential with minimal idle time.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>3. Fundamental Roles of an OS</h2>
+    <p>Dr. Mishra breaks down the primary operational architecture of an OS into two structural identities:</p>
+    
+    <div class="grid-container">
+        <div class="grid-col">
+            <h3>A. Resource Allocator / Manager</h3>
+            <p>The computer system consists of numerous hardware resources that must be divided dynamically among active processes. The OS handles:</p>
+            <ul>
+                <li><strong>CPU Management:</strong> Deciding which process gets the processor time and for how long (Scheduling).</li>
+                <li><strong>Memory Management:</strong> Tracking every byte of primary memory and allocating/deallocating space dynamically.</li>
+                <li><strong>Storage Management:</strong> Organizing structured file placement across physical tracks and sectors.</li>
+                <li><strong>I/O Device Allocation:</strong> Resolving conflicting device requests from multiple processes.</li>
+            </ul>
+        </div>
+        <div class="grid-col">
+            <h3>B. The Control Program</h3>
+            <p>The OS acts as an administrative manager regulating program executions to maintain safe system operations:</p>
+            <ul>
+                <li><strong>Prevention of Errors:</strong> Intercepting illegal commands or memory violations (like out-of-bounds array access hitting system memory).</li>
+                <li><strong>Improper Use Protection:</strong> Ensuring user programs don't access access-restricted peripheral devices or corrupt other users' spaces.</li>
+                <li><strong>Mode Isolation:</strong> Keeping user-level calculations separated from critical system kernel operations using hardware-driven mode-bit bit switches.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>4. Key Takeaways for Examination</h2>
+    <ul>
+        <li>The OS is a <strong>Resource Manager</strong> mapping virtual logic to physical hardware.</li>
+        <li>It exists to resolve conflict safely and fairly when multiple tasks run simultaneously.</li>
+        <li>It represents a permanent control routine (the <em>Kernel</em>) running at all times alongside auxiliary system programs.</li>
+    </ul>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Notes: OS Structures & Virtual Machines - Dr. Nitin Mishra</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #1a365d;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        h1 { margin: 0; font-size: 24px; }
+        h2 { color: #2c5282; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-top: 30px; }
+        h3 { color: #2b6cb0; margin-top: 20px; margin-bottom: 10px; }
+        .meta-info {
+            font-style: italic;
+            color: #e2e8f0;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        .struct-card {
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #cbd5e0;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #edf2f7;
+        }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 6px; }
+        .vm-box {
+            background-color: #f7fafc;
+            border-left: 4px solid #2b6cb0;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Unit 1: Introduction to Operating Systems</h1>
+    <div class="meta-info">Lecture Notes by Dr. Nitin Mishra</div>
+</header>
+
+<section>
+    <h2>1. Structure of an Operating System</h2>
+    <p>The structural architecture of an OS dictates how internal software modules are organized and how they interact across system privilege boundaries. We explore three classic architectural paradigms:</p>
+
+    <div class="struct-card">
+        <h3>A. Monolithic Architecture</h3>
+        <p>The entire operating system runs as a single, large program operating completely within <strong>Kernel Mode</strong>. All services (scheduling, memory allocation, file management) are tightly integrated into a unified address space.</p>
+        <ul>
+            <li><strong>Mechanism:</strong> Applications trigger a system call, which shifts execution directly into the monolithic blob via internal function addresses.</li>
+            <li><strong>Pros:</strong> Exceptional execution efficiency; there is virtually zero communication overhead because components interact via direct function calls.</li>
+            <li><strong>Cons:</strong> Highly complex to maintain or expand. A single software fault or crash in a minor driver brings down the entire kernel framework.</li>
+        </ul>
+    </div>
+
+    <div class="struct-card">
+        <h3>B. Layered Architecture</h3>
+        <p>The OS software is broken down into a hierarchy of distinct operational levels or layers. Layer 0 directly wraps the physical hardware, while the highest layer (Layer N) hosts the user interface interface routines.</p>
+        <ul>
+            <li><strong>Mechanism:</strong> Each layer can only invoke services provided by layers strictly underneath it. It hides implementation details from higher tiers.</li>
+            <li><strong>Pros:</strong> Modular design facilitates straightforward debugging, code verification, and incremental system construction.</li>
+            <li><strong>Cons:</strong> Difficult to cleanly define layer hierarchies. Passing data sequentially across multiple boundary boundaries degrades runtime efficiency.</li>
+        </ul>
+    </div>
+
+    <div class="struct-card">
+        <h3>C. Microkernel Architecture</h3>
+        <p>This design actively strips all non-essential components out of kernel space, shifting subsystems (like file systems and device drivers) into independent <strong>User Space</strong> processes. The remaining microkernel handles only core primitives: IPC (Inter-Process Communication), basic memory management, and low-level scheduling.</p>
+        <ul>
+            <li><strong>Mechanism:</strong> Subsystems communicate with each other indirectly by passing message packages across the microkernel using IPC channels.</li>
+            <li><strong>Pros:</strong> High extensibility and reliability. If a user-space file system crashes, the core kernel remains stable and functional.</li>
+            <li><strong>Cons:</strong> Performance bottlenecks due to frequent context-switching overhead as messages traverse system spaces repeatedly.</li>
+        </ul>
+    </div>
+</section>
+
+<section>
+    <h2>2. Concept of a Virtual Machine (VM)</h2>
+    <p>A <strong>Virtual Machine</strong> abstracts the underlying physical hardware of a single computer into several distinct computational environments. It creates an exact operational illusion that each guest OS has its own dedicated physical hardware resources.</p>
+    
+    <div class="vm-box">
+        <h3>The Hypervisor / Virtual Machine Monitor (VMM)</h3>
+        <p>The core software layer responsible for this abstraction is the <strong>Hypervisor</strong>. It sits directly on the bare-metal hardware or host OS, managing hardware resources dynamically and isolating each VM environment safely from others.</p>
+        <ul>
+            <li><strong>Type 1 Hypervisor (Bare-Metal):</strong> Runs directly on the physical hardware architecture (e.g., VMware ESXi, Xen). Used heavily in corporate data centers.</li>
+            <li><strong>Type 2 Hypervisor (Hosted):</strong> Runs on top of a standard host operating system (e.g., Oracle VirtualBox, VMware Workstation). Ideal for local development.</li>
+        </ul>
+    </div>
+
+    <h3>Key Technical Benefits</h3>
+    <ul>
+        <li><strong>Total Isolation:</strong> Security is heavily enforced. If a guest OS suffers malware infection or critical failure, the host and neighboring VMs remain untouched.</li>
+        <li><strong>Resource Consolidation:</strong> Allows multiple production servers running different operating systems (Windows, Linux) to maximize utilization on one physical machine.</li>
+        <li><strong>Portability:</strong> Virtual environments can be saved as point-in-time snapshots or image files, enabling effortless migrations across physical hardware nodes.</li>
+    </ul>
+</section>
+
+</body>
+</html>
