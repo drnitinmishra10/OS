@@ -1,0 +1,618 @@
+# <!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operating Systems - Unit 1 Lecture 3 | Types of Operating Systems</title>
+
+<style>
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    line-height:1.8;
+    margin:40px;
+    background:#f4f7fb;
+    color:#333;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    background:#fff;
+    padding:40px;
+    border-radius:10px;
+    box-shadow:0 0 15px rgba(0,0,0,.1);
+}
+
+h1,h2,h3{
+    color:#0B5394;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin:20px 0;
+}
+
+table,th,td{
+    border:1px solid #555;
+}
+
+th{
+    background:#0B5394;
+    color:white;
+    padding:10px;
+}
+
+td{
+    padding:10px;
+}
+
+.note{
+    background:#FFF3CD;
+    border-left:6px solid orange;
+    padding:15px;
+    margin:20px 0;
+}
+
+.example{
+    background:#E8F5E9;
+    border-left:6px solid green;
+    padding:15px;
+    margin:20px 0;
+}
+
+.summary{
+    background:#E3F2FD;
+    padding:20px;
+    border-radius:8px;
+}
+
+code{
+    background:#eee;
+    padding:2px 5px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 align="center">Operating Systems</h1>
+<h2 align="center">Unit 1 – Lecture 3</h2>
+<h2 align="center">Types of Operating Systems</h2>
+
+<p align="right"><strong>Prepared By:</strong><br>
+<b>Dr. Nitin Mishra</b><br>
+Professor, Department of Computer Science & Engineering<br>
+Parul Institute of Engineering & Technology (PIET)<br>
+Parul University, Vadodara
+</p>
+
+<hr>
+
+<h2>Learning Objectives</h2>
+
+<p>After completing this lecture, students will be able to:</p>
+
+<ul>
+<li>Understand different types of operating systems.</li>
+<li>Differentiate between Batch, Multiprogramming, Multitasking and Time-Sharing operating systems.</li>
+<li>Explain Distributed, Network and Real-Time operating systems.</li>
+<li>Compare various operating systems based on their characteristics.</li>
+<li>Select suitable operating systems for different applications.</li>
+</ul>
+
+<hr>
+
+<h2>Introduction</h2>
+
+<p>
+Different computing environments require different operating systems. A personal laptop,
+banking server, hospital equipment, mobile phone and spacecraft all have different requirements.
+Therefore, operating systems are classified into various types depending upon how they manage
+CPU, memory, users, and resources.
+</p>
+
+<hr>
+
+<h2>Classification of Operating Systems</h2>
+
+<ol>
+<li>Batch Operating System</li>
+<li>Multiprogramming Operating System</li>
+<li>Multitasking Operating System</li>
+<li>Time-Sharing Operating System</li>
+<li>Multiprocessing Operating System</li>
+<li>Distributed Operating System</li>
+<li>Network Operating System</li>
+<li>Real-Time Operating System</li>
+<li>Embedded Operating System</li>
+<li>Mobile Operating System</li>
+</ol>
+
+<hr>
+
+<h2>1. Batch Operating System</h2>
+
+<p>
+A Batch Operating System executes similar jobs in batches without user interaction.
+Jobs are collected and processed one after another automatically.
+</p>
+
+<h3>Working</h3>
+
+<ul>
+<li>User submits jobs.</li>
+<li>Jobs are stored in a queue.</li>
+<li>Operating System executes them sequentially.</li>
+<li>Results are produced after execution.</li>
+</ul>
+
+<div class="example">
+
+<b>Examples</b>
+
+<ul>
+<li>Payroll Processing</li>
+<li>Bank Statement Generation</li>
+<li>Electricity Bill Generation</li>
+</ul>
+
+</div>
+
+<h3>Advantages</h3>
+
+<ul>
+<li>High throughput</li>
+<li>Efficient for repetitive tasks</li>
+<li>Reduced manual intervention</li>
+</ul>
+
+<h3>Disadvantages</h3>
+
+<ul>
+<li>No interaction during execution</li>
+<li>Long turnaround time</li>
+<li>Difficult debugging</li>
+</ul>
+
+<hr>
+
+<h2>2. Multiprogramming Operating System</h2>
+
+<p>
+Multiple programs are kept in memory simultaneously. Whenever one program waits for I/O,
+the CPU executes another program.
+</p>
+
+<h3>Advantages</h3>
+
+<ul>
+<li>Improves CPU utilization</li>
+<li>Increases system efficiency</li>
+<li>Reduces CPU idle time</li>
+</ul>
+
+<h3>Disadvantages</h3>
+
+<ul>
+<li>Complex memory management</li>
+<li>Requires scheduling algorithms</li>
+</ul>
+
+<div class="example">
+
+<b>Example:</b>
+
+<p>
+Suppose Program A is waiting for printer output.
+Instead of keeping CPU idle, Program B starts executing.
+</p>
+
+</div>
+
+<hr>
+
+<h2>3. Multitasking Operating System</h2>
+
+<p>
+A multitasking operating system allows a single user to execute multiple applications
+simultaneously.
+</p>
+
+<div class="example">
+
+<b>Example</b>
+
+<ul>
+<li>Listening to music</li>
+<li>Browsing the Internet</li>
+<li>Editing a document</li>
+<li>Downloading files</li>
+</ul>
+
+<p>All can happen simultaneously.</p>
+
+</div>
+
+<h3>Advantages</h3>
+
+<ul>
+<li>Better productivity</li>
+<li>Fast response</li>
+<li>Efficient resource utilization</li>
+</ul>
+
+<hr>
+
+<h2>4. Time-Sharing Operating System</h2>
+
+<p>
+Time-sharing systems allow multiple users to share a computer simultaneously.
+Each user gets a small time slice (quantum) of CPU.
+</p>
+
+<div class="example">
+
+<b>Examples</b>
+
+<ul>
+<li>UNIX</li>
+<li>Linux Servers</li>
+<li>Multi-user academic servers</li>
+</ul>
+
+</div>
+
+<h3>Advantages</h3>
+
+<ul>
+<li>Quick response time</li>
+<li>Fair CPU allocation</li>
+<li>Supports many users</li>
+</ul>
+
+<h3>Disadvantages</h3>
+
+<ul>
+<li>Security concerns</li>
+<li>Performance decreases with many users</li>
+</ul>
+
+<hr>
+
+<h2>5. Multiprocessing Operating System</h2>
+
+<p>
+A multiprocessing operating system uses two or more CPUs to execute programs simultaneously.
+</p>
+
+<h3>Types</h3>
+
+<ul>
+<li>Symmetric Multiprocessing (SMP)</li>
+<li>Asymmetric Multiprocessing (AMP)</li>
+</ul>
+
+<div class="example">
+
+<b>Examples</b>
+
+<ul>
+<li>Linux</li>
+<li>Windows Server</li>
+<li>macOS</li>
+</ul>
+
+</div>
+
+<hr>
+
+<h2>6. Distributed Operating System</h2>
+
+<p>
+A Distributed Operating System connects multiple computers and makes them appear as one system.
+</p>
+
+<h3>Features</h3>
+
+<ul>
+<li>Resource sharing</li>
+<li>Load balancing</li>
+<li>Fault tolerance</li>
+<li>High performance</li>
+</ul>
+
+<div class="example">
+
+<b>Applications</b>
+
+<ul>
+<li>Cloud Computing</li>
+<li>Distributed Databases</li>
+<li>Scientific Computing</li>
+</ul>
+
+</div>
+
+<hr>
+
+<h2>7. Network Operating System</h2>
+
+<p>
+A Network Operating System manages network resources and provides communication among computers.
+</p>
+
+<h3>Services</h3>
+
+<ul>
+<li>File sharing</li>
+<li>Printer sharing</li>
+<li>User authentication</li>
+<li>Remote login</li>
+</ul>
+
+<div class="example">
+
+<b>Examples</b>
+
+<ul>
+<li>Windows Server</li>
+<li>Linux Server</li>
+<li>Novell NetWare</li>
+</ul>
+
+</div>
+
+<hr>
+
+<h2>8. Real-Time Operating System (RTOS)</h2>
+
+<p>
+A Real-Time Operating System guarantees response within a specified time limit.
+Missing deadlines may cause system failure.
+</p>
+
+<h3>Types</h3>
+
+<h4>Hard Real-Time OS</h4>
+
+<ul>
+<li>Deadlines must never be missed.</li>
+<li>Used in aircraft, medical equipment and nuclear systems.</li>
+</ul>
+
+<h4>Soft Real-Time OS</h4>
+
+<ul>
+<li>Occasional deadline misses are acceptable.</li>
+<li>Used in multimedia and online gaming.</li>
+</ul>
+
+<div class="example">
+
+<b>Examples</b>
+
+<ul>
+<li>VxWorks</li>
+<li>QNX</li>
+<li>RTLinux</li>
+<li>FreeRTOS</li>
+</ul>
+
+</div>
+
+<hr>
+
+<h2>9. Embedded Operating System</h2>
+
+<p>
+Embedded Operating Systems are designed for dedicated devices with limited memory and power.
+</p>
+
+<div class="example">
+
+<b>Applications</b>
+
+<ul>
+<li>Smart TVs</li>
+<li>Microwave ovens</li>
+<li>ATM Machines</li>
+<li>Washing Machines</li>
+<li>IoT Devices</li>
+</ul>
+
+</div>
+
+<hr>
+
+<h2>10. Mobile Operating System</h2>
+
+<p>
+A Mobile Operating System is designed for smartphones and tablets.
+</p>
+
+<div class="example">
+
+<b>Examples</b>
+
+<ul>
+<li>Android</li>
+<li>iOS</li>
+</ul>
+
+</div>
+
+<h3>Features</h3>
+
+<ul>
+<li>Touch interface</li>
+<li>Battery optimization</li>
+<li>Wireless communication</li>
+<li>Mobile applications</li>
+<li>Sensor support</li>
+</ul>
+
+<hr>
+
+<h2>Comparison of Operating Systems</h2>
+
+<table>
+
+<tr>
+<th>Type</th>
+<th>Main Purpose</th>
+<th>Users</th>
+<th>Example</th>
+</tr>
+
+<tr>
+<td>Batch</td>
+<td>Process jobs in groups</td>
+<td>Single</td>
+<td>Payroll System</td>
+</tr>
+
+<tr>
+<td>Multiprogramming</td>
+<td>Increase CPU utilization</td>
+<td>Single</td>
+<td>IBM OS</td>
+</tr>
+
+<tr>
+<td>Multitasking</td>
+<td>Run multiple applications</td>
+<td>Single</td>
+<td>Windows</td>
+</tr>
+
+<tr>
+<td>Time Sharing</td>
+<td>Support multiple users</td>
+<td>Multiple</td>
+<td>UNIX</td>
+</tr>
+
+<tr>
+<td>Multiprocessing</td>
+<td>Multiple CPUs</td>
+<td>Multiple</td>
+<td>Linux</td>
+</tr>
+
+<tr>
+<td>Distributed</td>
+<td>Multiple computers work together</td>
+<td>Multiple</td>
+<td>Cloud Systems</td>
+</tr>
+
+<tr>
+<td>Network</td>
+<td>Network resource management</td>
+<td>Multiple</td>
+<td>Windows Server</td>
+</tr>
+
+<tr>
+<td>Real-Time</td>
+<td>Deadline-based execution</td>
+<td>Dedicated</td>
+<td>FreeRTOS</td>
+</tr>
+
+<tr>
+<td>Embedded</td>
+<td>Dedicated devices</td>
+<td>Single</td>
+<td>Smart TV</td>
+</tr>
+
+<tr>
+<td>Mobile</td>
+<td>Smartphones</td>
+<td>Single</td>
+<td>Android</td>
+</tr>
+
+</table>
+
+<hr>
+
+<div class="note">
+
+<h2>Important Interview Questions</h2>
+
+<ol>
+<li>Differentiate between Batch and Time-Sharing Operating Systems.</li>
+<li>What is Multiprogramming?</li>
+<li>Difference between Multitasking and Multiprocessing.</li>
+<li>Explain Hard RTOS and Soft RTOS.</li>
+<li>Differentiate between Distributed OS and Network OS.</li>
+<li>Write advantages and disadvantages of Batch Operating Systems.</li>
+<li>Why is Linux called a multitasking operating system?</li>
+<li>What are the applications of Embedded Operating Systems?</li>
+</ol>
+
+</div>
+
+<hr>
+
+<div class="summary">
+
+<h2>Lecture Summary</h2>
+
+<ul>
+<li>Operating systems are classified according to how they manage resources and users.</li>
+<li>Batch systems process jobs without user interaction.</li>
+<li>Multiprogramming improves CPU utilization.</li>
+<li>Multitasking enables one user to run multiple applications.</li>
+<li>Time-sharing supports multiple users by allocating CPU time slices.</li>
+<li>Multiprocessing uses multiple CPUs for better performance.</li>
+<li>Distributed operating systems integrate multiple computers into a single system.</li>
+<li>Network operating systems manage shared network resources.</li>
+<li>Real-time operating systems guarantee timely responses.</li>
+<li>Embedded and Mobile operating systems are designed for specialized devices.</li>
+</ul>
+
+</div>
+
+<hr>
+
+<h2>Exercise Questions</h2>
+
+<h3>Part A (2 Marks)</h3>
+
+<ol>
+<li>Define Batch Operating System.</li>
+<li>What is Multitasking?</li>
+<li>What is Time Sharing?</li>
+<li>Define Real-Time Operating System.</li>
+<li>What is Embedded Operating System?</li>
+</ol>
+
+<h3>Part B (5 Marks)</h3>
+
+<ol>
+<li>Explain the working of Batch Operating System.</li>
+<li>Differentiate Multiprogramming and Multitasking.</li>
+<li>Explain Network Operating System with examples.</li>
+<li>Discuss Multiprocessing Operating System.</li>
+</ol>
+
+<h3>Part C (10 Marks)</h3>
+
+<ol>
+<li>Explain all types of Operating Systems with suitable examples.</li>
+<li>Compare Batch, Time-Sharing, Distributed and Real-Time Operating Systems.</li>
+<li>Explain the classification of Operating Systems using a comparison table.</li>
+</ol>
+
+</div>
+
+</body>
+</html>
