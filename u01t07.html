@@ -1,0 +1,592 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operating Systems - Unit 1 Lecture 4 | Operating System Services</title>
+
+<style>
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f4f7fa;
+    margin:40px;
+    color:#333;
+    line-height:1.8;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    background:white;
+    padding:40px;
+    border-radius:10px;
+    box-shadow:0 0 15px rgba(0,0,0,.15);
+}
+
+h1,h2,h3,h4{
+    color:#0B5394;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin:20px 0;
+}
+
+table,th,td{
+    border:1px solid #555;
+}
+
+th{
+    background:#0B5394;
+    color:white;
+    padding:10px;
+}
+
+td{
+    padding:10px;
+}
+
+.note{
+    background:#FFF8DC;
+    border-left:6px solid orange;
+    padding:15px;
+    margin:20px 0;
+}
+
+.example{
+    background:#E8F5E9;
+    border-left:6px solid green;
+    padding:15px;
+    margin:20px 0;
+}
+
+.summary{
+    background:#E3F2FD;
+    padding:20px;
+    border-radius:8px;
+}
+
+code{
+    background:#eeeeee;
+    padding:2px 6px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 align="center">Operating Systems</h1>
+<h2 align="center">Unit 1 – Lecture 4</h2>
+<h2 align="center">Operating System Services</h2>
+
+<p align="right">
+<strong>Prepared By:</strong><br>
+<b>Dr. Nitin Mishra</b><br>
+Professor, Department of Computer Science & Engineering<br>
+Parul Institute of Engineering & Technology (PIET)<br>
+Parul University, Vadodara
+</p>
+
+<hr>
+
+<h2>Learning Objectives</h2>
+
+<p>After completing this lecture, students will be able to:</p>
+
+<ul>
+<li>Understand the concept of Operating System Services.</li>
+<li>Explain the services provided by an Operating System.</li>
+<li>Describe how OS services simplify user and application interaction.</li>
+<li>Differentiate between user-oriented and system-oriented services.</li>
+<li>Understand the practical importance of each OS service.</li>
+</ul>
+
+<hr>
+
+<h2>Introduction</h2>
+
+<p>
+An <strong>Operating System (OS)</strong> acts as an interface between users, application programs, and computer hardware. Besides managing hardware resources, it provides several essential services that make computing convenient, efficient, and secure.
+</p>
+
+<p>
+These services help users execute programs, store files, communicate with devices, share resources, and protect the system from unauthorized access.
+</p>
+
+<hr>
+
+<h2>Operating System Services</h2>
+
+<p>The major services provided by an Operating System are:</p>
+
+<ol>
+<li>User Interface (UI)</li>
+<li>Program Execution</li>
+<li>I/O Operations</li>
+<li>File System Manipulation</li>
+<li>Communication</li>
+<li>Error Detection</li>
+<li>Resource Allocation</li>
+<li>Accounting</li>
+<li>Protection and Security</li>
+</ol>
+
+<hr>
+
+<h2>1. User Interface (UI)</h2>
+
+<p>
+The User Interface enables users to interact with the computer system.
+</p>
+
+<h3>Types of User Interfaces</h3>
+
+<table>
+
+<tr>
+<th>Interface</th>
+<th>Description</th>
+<th>Examples</th>
+</tr>
+
+<tr>
+<td>Command Line Interface (CLI)</td>
+<td>Users type commands using a keyboard.</td>
+<td>Linux Terminal, Windows Command Prompt</td>
+</tr>
+
+<tr>
+<td>Graphical User Interface (GUI)</td>
+<td>Users interact through icons, windows and menus.</td>
+<td>Windows, Ubuntu GNOME, macOS</td>
+</tr>
+
+<tr>
+<td>Touch Interface</td>
+<td>Users interact through touch gestures.</td>
+<td>Android, iOS</td>
+</tr>
+
+</table>
+
+<div class="example">
+<b>Example:</b>
+
+<p>Opening Microsoft Word by clicking its icon is an example of GUI interaction.</p>
+
+<p>Typing <code>mkdir OS</code> in Linux Terminal is an example of CLI.</p>
+
+</div>
+
+<hr>
+
+<h2>2. Program Execution</h2>
+
+<p>
+The Operating System loads a program into memory, starts its execution, manages required resources, and terminates the program after completion.
+</p>
+
+<h3>Steps Involved</h3>
+
+<ol>
+<li>Load the program into RAM.</li>
+<li>Create a process.</li>
+<li>Allocate CPU and memory.</li>
+<li>Execute instructions.</li>
+<li>Release resources after completion.</li>
+</ol>
+
+<div class="example">
+
+<b>Example</b>
+
+<p>
+When a user double-clicks Google Chrome, the operating system loads Chrome into memory and starts executing it.
+</p>
+
+</div>
+
+<hr>
+
+<h2>3. I/O Operations</h2>
+
+<p>
+Input/Output services allow communication between software and hardware devices.
+</p>
+
+<h3>Input Devices</h3>
+
+<ul>
+<li>Keyboard</li>
+<li>Mouse</li>
+<li>Scanner</li>
+<li>Microphone</li>
+</ul>
+
+<h3>Output Devices</h3>
+
+<ul>
+<li>Monitor</li>
+<li>Printer</li>
+<li>Speaker</li>
+<li>Projector</li>
+</ul>
+
+<div class="example">
+
+<b>Example</b>
+
+<p>
+When you print a document, the operating system transfers data from memory to the printer using printer drivers.
+</p>
+
+</div>
+
+<hr>
+
+<h2>4. File System Manipulation</h2>
+
+<p>
+The Operating System manages files and directories stored on secondary storage devices.
+</p>
+
+<h3>Functions</h3>
+
+<ul>
+<li>Create files</li>
+<li>Delete files</li>
+<li>Rename files</li>
+<li>Read and write files</li>
+<li>Create folders</li>
+<li>Manage permissions</li>
+</ul>
+
+<div class="example">
+
+<b>Example</b>
+
+<p>
+Saving a Microsoft Word document creates a file on the storage device managed by the operating system.
+</p>
+
+</div>
+
+<hr>
+
+<h2>5. Communication</h2>
+
+<p>
+Communication services allow processes running on the same computer or different computers to exchange data.
+</p>
+
+<h3>Communication Methods</h3>
+
+<ul>
+<li>Shared Memory</li>
+<li>Message Passing</li>
+<li>Network Communication</li>
+<li>Sockets</li>
+<li>Pipes</li>
+</ul>
+
+<div class="example">
+
+<b>Example</b>
+
+<p>
+A web browser communicates with a web server using network protocols through the operating system.
+</p>
+
+</div>
+
+<hr>
+
+<h2>6. Error Detection</h2>
+
+<p>
+The operating system continuously monitors the computer system for hardware and software errors.
+</p>
+
+<h3>Errors Detected</h3>
+
+<ul>
+<li>Memory errors</li>
+<li>Disk failures</li>
+<li>Printer errors</li>
+<li>Network failures</li>
+<li>CPU exceptions</li>
+</ul>
+
+<div class="example">
+
+<b>Example</b>
+
+<p>
+If a USB drive is removed while copying data, the operating system detects the error and displays a warning.
+</p>
+
+</div>
+
+<hr>
+
+<h2>7. Resource Allocation</h2>
+
+<p>
+The operating system manages and allocates available resources among multiple users and programs.
+</p>
+
+<h3>Resources Managed</h3>
+
+<ul>
+<li>CPU</li>
+<li>Main Memory</li>
+<li>Storage Devices</li>
+<li>Input Devices</li>
+<li>Output Devices</li>
+<li>Network Resources</li>
+</ul>
+
+<div class="example">
+
+<b>Example</b>
+
+<p>
+When several applications are open simultaneously, the operating system schedules CPU time fairly among them.
+</p>
+
+</div>
+
+<hr>
+
+<h2>8. Accounting</h2>
+
+<p>
+Accounting services monitor and record resource usage for performance analysis, billing, and auditing.
+</p>
+
+<h3>Information Recorded</h3>
+
+<ul>
+<li>CPU usage</li>
+<li>Memory usage</li>
+<li>Disk utilization</li>
+<li>Network usage</li>
+<li>User login history</li>
+</ul>
+
+<div class="example">
+
+<b>Example</b>
+
+<p>
+Cloud providers record CPU hours used by customers for billing purposes.
+</p>
+
+</div>
+
+<hr>
+
+<h2>9. Protection and Security</h2>
+
+<p>
+Protection and Security services ensure that only authorized users can access system resources.
+</p>
+
+<h3>Security Mechanisms</h3>
+
+<ul>
+<li>User Authentication</li>
+<li>Password Protection</li>
+<li>Access Control</li>
+<li>Encryption</li>
+<li>Firewalls</li>
+<li>Antivirus Protection</li>
+</ul>
+
+<div class="example">
+
+<b>Example</b>
+
+<p>
+A user must enter the correct password or biometric authentication before accessing the operating system.
+</p>
+
+</div>
+
+<hr>
+
+<h2>User-Oriented vs System-Oriented Services</h2>
+
+<table>
+
+<tr>
+<th>User-Oriented Services</th>
+<th>System-Oriented Services</th>
+</tr>
+
+<tr>
+<td>User Interface</td>
+<td>Resource Allocation</td>
+</tr>
+
+<tr>
+<td>Program Execution</td>
+<td>Accounting</td>
+</tr>
+
+<tr>
+<td>I/O Operations</td>
+<td>Error Detection</td>
+</tr>
+
+<tr>
+<td>Communication</td>
+<td>Protection & Security</td>
+</tr>
+
+<tr>
+<td>File Management</td>
+<td>Performance Monitoring</td>
+</tr>
+
+</table>
+
+<hr>
+
+<h2>Summary of Operating System Services</h2>
+
+<table>
+
+<tr>
+<th>Service</th>
+<th>Main Purpose</th>
+</tr>
+
+<tr>
+<td>User Interface</td>
+<td>Allows users to interact with the system.</td>
+</tr>
+
+<tr>
+<td>Program Execution</td>
+<td>Loads and executes programs.</td>
+</tr>
+
+<tr>
+<td>I/O Operations</td>
+<td>Controls input and output devices.</td>
+</tr>
+
+<tr>
+<td>File Management</td>
+<td>Creates and manages files and folders.</td>
+</tr>
+
+<tr>
+<td>Communication</td>
+<td>Enables process communication.</td>
+</tr>
+
+<tr>
+<td>Error Detection</td>
+<td>Detects hardware and software errors.</td>
+</tr>
+
+<tr>
+<td>Resource Allocation</td>
+<td>Distributes system resources efficiently.</td>
+</tr>
+
+<tr>
+<td>Accounting</td>
+<td>Tracks resource usage.</td>
+</tr>
+
+<tr>
+<td>Protection & Security</td>
+<td>Protects data and system resources.</td>
+</tr>
+
+</table>
+
+<hr>
+
+<div class="note">
+
+<h2>Important Interview & University Questions</h2>
+
+<ol>
+<li>What are Operating System Services?</li>
+<li>Explain Program Execution Service.</li>
+<li>Discuss File System Manipulation.</li>
+<li>Differentiate User-Oriented and System-Oriented Services.</li>
+<li>Explain Protection and Security Services.</li>
+<li>Describe Resource Allocation with suitable examples.</li>
+<li>Why is Error Detection important in an Operating System?</li>
+<li>Explain all Operating System Services with examples.</li>
+</ol>
+
+</div>
+
+<hr>
+
+<div class="summary">
+
+<h2>Lecture Summary</h2>
+
+<ul>
+<li>An Operating System provides essential services for users and applications.</li>
+<li>User Interface enables interaction through CLI, GUI, or touch interfaces.</li>
+<li>Program Execution manages loading, running, and terminating programs.</li>
+<li>I/O Operations facilitate communication with hardware devices.</li>
+<li>File System Manipulation organizes and secures stored data.</li>
+<li>Communication services support data exchange between processes and systems.</li>
+<li>Error Detection enhances system reliability.</li>
+<li>Resource Allocation ensures efficient utilization of CPU, memory, and devices.</li>
+<li>Accounting tracks resource usage for monitoring and billing.</li>
+<li>Protection and Security safeguard system resources and user data.</li>
+</ul>
+
+</div>
+
+<hr>
+
+<h2>Exercise Questions</h2>
+
+<h3>Part A (2 Marks)</h3>
+
+<ol>
+<li>Define Operating System Services.</li>
+<li>What is Program Execution?</li>
+<li>List any four Operating System Services.</li>
+<li>What is Resource Allocation?</li>
+<li>What is Error Detection?</li>
+</ol>
+
+<h3>Part B (5 Marks)</h3>
+
+<ol>
+<li>Explain User Interface Service.</li>
+<li>Discuss File System Manipulation.</li>
+<li>Explain Communication Service with examples.</li>
+<li>Describe Protection and Security in Operating Systems.</li>
+</ol>
+
+<h3>Part C (10 Marks)</h3>
+
+<ol>
+<li>Explain all Operating System Services with suitable examples.</li>
+<li>Differentiate User-Oriented and System-Oriented Services.</li>
+<li>Describe the importance of Operating System Services in modern computing.</li>
+</ol>
+
+</div>
+
+</body>
+</html>
+```
