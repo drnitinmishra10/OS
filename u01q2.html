@@ -1,0 +1,288 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operating Systems Unit-1 True/False Quiz (Part-2)</title>
+
+<style>
+body{
+font-family:Arial,Helvetica,sans-serif;
+background:#eef3f9;
+margin:0;
+padding:20px;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+background:#fff;
+padding:30px;
+border-radius:10px;
+box-shadow:0 0 15px rgba(0,0,0,.15);
+}
+
+h1,h2{
+text-align:center;
+color:#0B5394;
+}
+
+.question{
+margin:25px 0;
+padding:20px;
+background:#f8f9fa;
+border-left:6px solid #0B5394;
+border-radius:6px;
+}
+
+button{
+padding:8px 18px;
+margin:8px;
+border:none;
+background:#0B5394;
+color:white;
+cursor:pointer;
+border-radius:5px;
+font-size:15px;
+}
+
+button:hover{
+background:#063970;
+}
+
+.feedback{
+font-weight:bold;
+margin-top:10px;
+}
+
+.correct{
+color:green;
+}
+
+.wrong{
+color:red;
+}
+
+.score{
+font-size:24px;
+text-align:center;
+background:#E8F5E9;
+padding:20px;
+margin-top:30px;
+border-radius:8px;
+display:none;
+}
+
+.footer{
+margin-top:40px;
+text-align:center;
+color:#555;
+}
+</style>
+
+<script>
+
+let score=0;
+let attempted={};
+
+function check(id,user,correct,exp){
+
+if(attempted[id]) return;
+
+attempted[id]=true;
+
+if(user==correct){
+
+document.getElementById("f"+id).innerHTML="<span class='correct'>✔ Correct</span><br>"+exp;
+
+score++;
+
+}
+else{
+
+document.getElementById("f"+id).innerHTML="<span class='wrong'>✘ Incorrect</span><br>"+exp;
+
+}
+
+}
+
+function result(){
+
+document.getElementById("score").style.display="block";
+
+document.getElementById("score").innerHTML="<h2>Your Score : "+score+" / 15</h2>";
+
+}
+
+function resetQuiz(){
+
+location.reload();
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Operating Systems</h1>
+
+<h2>Unit-1 True / False Quiz (Part-2)</h2>
+
+<h3 align="center">Questions 16–30</h3>
+
+<p align="right">
+
+<b>Prepared By</b><br>
+
+Dr. Nitin Mishra<br>
+
+Professor, Department of Computer Science & Engineering<br>
+
+Parul Institute of Engineering & Technology (PIET)<br>
+
+Parul University
+
+</p>
+
+<!-- Question 16 -->
+<div class="question">
+<b>16. A Monolithic Kernel contains most operating system services inside the kernel.</b><br><br>
+<button onclick="check(16,true,true,'Correct. Monolithic kernels include most OS services in kernel space.')">True</button>
+<button onclick="check(16,false,true,'Monolithic kernels include most services inside the kernel.')">False</button>
+<div id="f16" class="feedback"></div>
+</div>
+
+<!-- Question 17 -->
+<div class="question">
+<b>17. A Microkernel places all operating system services inside the kernel.</b><br><br>
+<button onclick="check(17,true,false,'Incorrect. Most services run in user space in a microkernel.')">True</button>
+<button onclick="check(17,false,false,'Correct. Only essential services remain in the kernel.')">False</button>
+<div id="f17" class="feedback"></div>
+</div>
+
+<!-- Question 18 -->
+<div class="question">
+<b>18. Virtual Machines allow multiple operating systems to run on the same physical computer.</b><br><br>
+<button onclick="check(18,true,true,'Correct. Virtualization allows multiple guest operating systems.')">True</button>
+<button onclick="check(18,false,true,'Virtual machines support multiple guest operating systems.')">False</button>
+<div id="f18" class="feedback"></div>
+</div>
+
+<!-- Question 19 -->
+<div class="question">
+<b>19. Hypervisors are used to create and manage virtual machines.</b><br><br>
+<button onclick="check(19,true,true,'Correct. Hypervisors manage virtual machines.')">True</button>
+<button onclick="check(19,false,true,'Hypervisors are responsible for virtualization.')">False</button>
+<div id="f19" class="feedback"></div>
+</div>
+
+<!-- Question 20 -->
+<div class="question">
+<b>20. System calls provide an interface between user programs and the operating system.</b><br><br>
+<button onclick="check(20,true,true,'Correct. Applications use system calls to request OS services.')">True</button>
+<button onclick="check(20,false,true,'System calls connect user programs with the OS.')">False</button>
+<div id="f20" class="feedback"></div>
+</div>
+
+<!-- Question 21 -->
+<div class="question">
+<b>21. Process creation is an example of a system call.</b><br><br>
+<button onclick="check(21,true,true,'Correct. Process control operations use system calls.')">True</button>
+<button onclick="check(21,false,true,'Creating a process requires a system call.')">False</button>
+<div id="f21" class="feedback"></div>
+</div>
+
+<!-- Question 22 -->
+<div class="question">
+<b>22. The Operating System manages only CPU resources.</b><br><br>
+<button onclick="check(22,true,false,'Incorrect. The OS manages CPU, memory, files, devices, and more.')">True</button>
+<button onclick="check(22,false,false,'Correct. The OS manages many different resources.')">False</button>
+<div id="f22" class="feedback"></div>
+</div>
+
+<!-- Question 23 -->
+<div class="question">
+<b>23. Memory management is an important responsibility of an Operating System.</b><br><br>
+<button onclick="check(23,true,true,'Correct. Memory management is one of the core OS functions.')">True</button>
+<button onclick="check(23,false,true,'The OS is responsible for memory management.')">False</button>
+<div id="f23" class="feedback"></div>
+</div>
+
+<!-- Question 24 -->
+<div class="question">
+<b>24. Linux supports multitasking.</b><br><br>
+<button onclick="check(24,true,true,'Correct. Linux is a multitasking operating system.')">True</button>
+<button onclick="check(24,false,true,'Linux supports multitasking.')">False</button>
+<div id="f24" class="feedback"></div>
+</div>
+
+<!-- Question 25 -->
+<div class="question">
+<b>25. Windows is an example of a graphical operating system.</b><br><br>
+<button onclick="check(25,true,true,'Correct. Windows primarily provides a GUI.')">True</button>
+<button onclick="check(25,false,true,'Windows is GUI-based.')">False</button>
+<div id="f25" class="feedback"></div>
+</div>
+
+<!-- Question 26 -->
+<div class="question">
+<b>26. Embedded operating systems are designed only for supercomputers.</b><br><br>
+<button onclick="check(26,true,false,'Incorrect. Embedded OS are designed for dedicated embedded devices.')">True</button>
+<button onclick="check(26,false,false,'Correct. Embedded OS are used in IoT devices, appliances, vehicles, etc.')">False</button>
+<div id="f26" class="feedback"></div>
+</div>
+
+<!-- Question 27 -->
+<div class="question">
+<b>27. Hard Real-Time Operating Systems cannot tolerate missed deadlines.</b><br><br>
+<button onclick="check(27,true,true,'Correct. Missing a deadline may lead to system failure.')">True</button>
+<button onclick="check(27,false,true,'Hard RTOS requires strict deadline compliance.')">False</button>
+<div id="f27" class="feedback"></div>
+</div>
+
+<!-- Question 28 -->
+<div class="question">
+<b>28. Soft Real-Time Operating Systems may tolerate occasional missed deadlines.</b><br><br>
+<button onclick="check(28,true,true,'Correct. Occasional delays are acceptable in Soft RTOS.')">True</button>
+<button onclick="check(28,false,true,'Soft RTOS allows occasional deadline misses.')">False</button>
+<div id="f28" class="feedback"></div>
+</div>
+
+<!-- Question 29 -->
+<div class="question">
+<b>29. An Operating System improves the convenience and efficiency of computer usage.</b><br><br>
+<button onclick="check(29,true,true,'Correct. The OS makes computer systems easier and more efficient to use.')">True</button>
+<button onclick="check(29,false,true,'An OS improves efficiency and usability.')">False</button>
+<div id="f29" class="feedback"></div>
+</div>
+
+<!-- Question 30 -->
+<div class="question">
+<b>30. Without an Operating System, application programs cannot normally utilize computer hardware directly.</b><br><br>
+<button onclick="check(30,true,true,'Correct. The OS provides the interface between applications and hardware.')">True</button>
+<button onclick="check(30,false,true,'Applications generally rely on the OS to access hardware resources.')">False</button>
+<div id="f30" class="feedback"></div>
+</div>
+
+<div align="center">
+<button onclick="result()">Show Score</button>
+<button onclick="resetQuiz()">Reset Quiz</button>
+</div>
+
+<div id="score" class="score"></div>
+
+<div class="footer">
+<b>End of Part-2 (Questions 16–30)</b><br><br>
+Congratulations! You have completed all 30 Unit-1 True/False questions.
+</div>
+
+</div>
+
+</body>
+</html>
+```
