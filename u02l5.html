@@ -1,0 +1,146 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OS Unit 2 Lecture 5 - CPU Scheduling Algorithms I</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f4f6f8;margin:40px;line-height:1.7}
+.wrap{max-width:1050px;margin:auto;background:#fff;padding:30px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+h1,h2,h3{color:#0b5394}
+table{width:100%;border-collapse:collapse;margin:15px 0}
+th,td{border:1px solid #888;padding:8px;text-align:center}
+th{background:#d9ecff}
+.code{background:#eee;padding:8px;font-family:monospace}
+.note{background:#eef8ff;border-left:4px solid #0b5394;padding:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Operating Systems</h1>
+<h2>Unit 2 – Lecture 5</h2>
+<h2>CPU Scheduling Algorithms – FCFS, SJF and SRTF</h2>
+
+<p><b>Prepared By:</b><br>
+Dr. Nitin Mishra<br>
+Professor, Department of Computer Science & Engineering<br>
+Parul University</p>
+
+<h2>Learning Outcomes</h2>
+<ul>
+<li>Understand preemptive and non-preemptive scheduling.</li>
+<li>Explain FCFS, SJF and SRTF scheduling algorithms.</li>
+<li>Draw Gantt charts.</li>
+<li>Calculate Waiting Time (WT) and Turnaround Time (TAT).</li>
+</ul>
+
+<h2>Preemptive vs Non-Preemptive Scheduling</h2>
+<table>
+<tr><th>Non-Preemptive</th><th>Preemptive</th></tr>
+<tr><td>CPU is not taken away until process finishes or blocks.</td><td>CPU may be interrupted and assigned to another process.</td></tr>
+<tr><td>Simple implementation.</td><td>Better responsiveness.</td></tr>
+<tr><td>Lower overhead.</td><td>Higher context-switch overhead.</td></tr>
+</table>
+
+<h2>First Come First Serve (FCFS)</h2>
+<p>Processes are executed in the order of their arrival.</p>
+
+<table>
+<tr><th>Process</th><th>Arrival</th><th>Burst</th></tr>
+<tr><td>P1</td><td>0</td><td>5</td></tr>
+<tr><td>P2</td><td>1</td><td>3</td></tr>
+<tr><td>P3</td><td>2</td><td>2</td></tr>
+</table>
+
+<div class="code">Gantt Chart:
+0 | P1 | 5 | P2 | 8 | P3 | 10</div>
+
+<table>
+<tr><th>Process</th><th>WT</th><th>TAT</th></tr>
+<tr><td>P1</td><td>0</td><td>5</td></tr>
+<tr><td>P2</td><td>4</td><td>7</td></tr>
+<tr><td>P3</td><td>6</td><td>8</td></tr>
+<tr><th>Average</th><th>3.33</th><th>6.67</th></tr>
+</table>
+
+<h2>Shortest Job First (SJF)</h2>
+<p>The process with the smallest CPU burst executes first. It is a non-preemptive algorithm.</p>
+
+<div class="code">Example:
+Burst Times: P1=6, P2=2, P3=8, P4=3
+Execution Order: P2 → P4 → P1 → P3</div>
+
+<h3>Advantages</h3>
+<ul>
+<li>Minimum average waiting time.</li>
+<li>Efficient for batch systems.</li>
+</ul>
+
+<h3>Disadvantages</h3>
+<ul>
+<li>Requires burst time prediction.</li>
+<li>Long jobs may suffer starvation.</li>
+</ul>
+
+<h2>Shortest Remaining Time First (SRTF)</h2>
+<p>SRTF is the preemptive version of SJF. If a newly arrived process has a shorter remaining burst time, it preempts the running process.</p>
+
+<div class="note">
+<b>Important:</b> SRTF improves response time but increases context switching.
+</div>
+
+<h2>Comparison</h2>
+<table>
+<tr><th>Algorithm</th><th>Type</th><th>Starvation</th><th>Response</th></tr>
+<tr><td>FCFS</td><td>Non-Preemptive</td><td>No</td><td>Poor</td></tr>
+<tr><td>SJF</td><td>Non-Preemptive</td><td>Possible</td><td>Good</td></tr>
+<tr><td>SRTF</td><td>Preemptive</td><td>Possible</td><td>Very Good</td></tr>
+</table>
+
+<h2>Key Formulae</h2>
+<ul>
+<li>Turnaround Time = Completion Time − Arrival Time</li>
+<li>Waiting Time = Turnaround Time − Burst Time</li>
+</ul>
+
+<h2>Summary</h2>
+<p>FCFS is the simplest scheduling algorithm. SJF minimizes average waiting time, while SRTF provides better responsiveness by allowing preemption.</p>
+
+<h2>MCQs</h2>
+<ol>
+<li>FCFS is a <b>Non-Preemptive</b> algorithm.</li>
+<li>SRTF is the preemptive version of <b>SJF</b>.</li>
+<li>Which algorithm minimizes average waiting time? <b>SJF</b>.</li>
+<li>Which algorithm may suffer starvation? <b>SJF/SRTF</b>.</li>
+<li>Waiting Time = <b>TAT − Burst Time</b>.</li>
+</ol>
+
+<h2>Interview Questions</h2>
+<ol>
+<li>Differentiate FCFS and SJF.</li>
+<li>Why can SJF lead to starvation?</li>
+<li>Explain SRTF with an example.</li>
+<li>How are WT and TAT calculated?</li>
+<li>Which algorithm gives the best response time?</li>
+</ol>
+
+<h2>Practice Questions</h2>
+<ol>
+<li>Solve FCFS scheduling for five processes.</li>
+<li>Draw Gantt charts for SJF.</li>
+<li>Calculate WT and TAT for SRTF.</li>
+</ol>
+
+<h2>References</h2>
+<ul>
+<li>Operating System Concepts – Silberschatz, Galvin & Gagne.</li>
+<li>Modern Operating Systems – Tanenbaum & Bos.</li>
+<li>Operating Systems – William Stallings.</li>
+</ul>
+
+<p style="text-align:center;margin-top:40px">© Dr. Nitin Mishra | Department of CSE | Parul University</p>
+</div>
+</body>
+</html>
