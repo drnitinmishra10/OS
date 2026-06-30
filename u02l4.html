@@ -1,0 +1,156 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operating Systems - Unit 2 Lecture 4: Process Scheduling Fundamentals</title>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;background:#f4f7fb;margin:40px;line-height:1.7}
+.container{max-width:1000px;margin:auto;background:#fff;padding:30px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+h1,h2,h3{color:#0b5394}
+table{width:100%;border-collapse:collapse;margin:18px 0}
+th,td{border:1px solid #999;padding:8px}
+th{background:#dcecff}
+.note{background:#eef8ff;border-left:5px solid #0b5394;padding:10px}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Operating Systems</h1>
+<h2>Unit 2 – Lecture 4</h2>
+<h2>Process Scheduling Fundamentals</h2>
+
+<p><strong>Prepared By:</strong><br>
+Dr. Nitin Mishra<br>
+Professor, Department of Computer Science & Engineering<br>
+Parul University</p>
+
+<h2>Learning Outcomes</h2>
+<ul>
+<li>Understand the need for CPU scheduling.</li>
+<li>Explain scheduling objectives.</li>
+<li>Describe different types of schedulers.</li>
+<li>Understand the role of the dispatcher.</li>
+<li>Evaluate scheduling algorithms using scheduling criteria.</li>
+</ul>
+
+<h2>Introduction</h2>
+<p>CPU scheduling is the operating system function that decides which ready process receives the CPU next. Efficient scheduling maximizes system performance, improves responsiveness, and ensures fair CPU allocation.</p>
+
+<h2>Why Process Scheduling is Required?</h2>
+<ul>
+<li>Efficient CPU utilization.</li>
+<li>Support multiprogramming.</li>
+<li>Improve throughput.</li>
+<li>Reduce waiting time.</li>
+<li>Provide fairness among processes.</li>
+<li>Improve response for interactive users.</li>
+</ul>
+
+<h2>Scheduling Objectives</h2>
+<table>
+<tr><th>Objective</th><th>Description</th></tr>
+<tr><td>Fairness</td><td>Give every process a reasonable opportunity to execute.</td></tr>
+<tr><td>Efficiency</td><td>Keep CPU busy as much as possible.</td></tr>
+<tr><td>Fast Response</td><td>Reduce response time for interactive applications.</td></tr>
+<tr><td>Low Waiting</td><td>Minimize queue waiting time.</td></tr>
+<tr><td>High Throughput</td><td>Complete more jobs per unit time.</td></tr>
+</table>
+
+<h2>Types of Schedulers</h2>
+
+<h3>1. Long-Term Scheduler (Job Scheduler)</h3>
+<ul>
+<li>Selects jobs from secondary storage.</li>
+<li>Controls degree of multiprogramming.</li>
+<li>Invoked infrequently.</li>
+</ul>
+
+<h3>2. Medium-Term Scheduler</h3>
+<ul>
+<li>Temporarily removes processes from memory.</li>
+<li>Supports swapping.</li>
+<li>Reduces memory pressure.</li>
+</ul>
+
+<h3>3. Short-Term Scheduler (CPU Scheduler)</h3>
+<ul>
+<li>Selects the next ready process for CPU execution.</li>
+<li>Runs very frequently.</li>
+<li>Must be highly efficient.</li>
+</ul>
+
+<h2>Comparison of Schedulers</h2>
+<table>
+<tr><th>Scheduler</th><th>Frequency</th><th>Main Function</th></tr>
+<tr><td>Long-Term</td><td>Low</td><td>Admits jobs into memory.</td></tr>
+<tr><td>Medium-Term</td><td>Medium</td><td>Swaps processes in/out.</td></tr>
+<tr><td>Short-Term</td><td>Very High</td><td>Selects next process for CPU.</td></tr>
+</table>
+
+<h2>Dispatcher</h2>
+<p>The dispatcher transfers CPU control to the process selected by the short-term scheduler. Its responsibilities include context switching, switching to user mode, and starting execution of the selected process.</p>
+
+<div class="note">
+<strong>Dispatcher Latency:</strong> The time required for the dispatcher to stop one process and start another.
+</div>
+
+<h2>Scheduling Criteria</h2>
+<table>
+<tr><th>Criterion</th><th>Goal</th></tr>
+<tr><td>CPU Utilization</td><td>Maximize CPU usage.</td></tr>
+<tr><td>Throughput</td><td>Maximize completed processes.</td></tr>
+<tr><td>Turnaround Time</td><td>Minimize completion time.</td></tr>
+<tr><td>Waiting Time</td><td>Minimize waiting in ready queue.</td></tr>
+<tr><td>Response Time</td><td>Provide quick first response.</td></tr>
+</table>
+
+<h2>Real-World Example</h2>
+<p>Smartphones schedule foreground applications with higher priority than background tasks to provide a smooth user experience while conserving resources.</p>
+
+<h2>Key Points</h2>
+<ul>
+<li>Scheduling improves CPU efficiency.</li>
+<li>Different schedulers perform different tasks.</li>
+<li>The dispatcher performs CPU handoff.</li>
+<li>Scheduling criteria are used to compare scheduling algorithms.</li>
+</ul>
+
+<h2>MCQs</h2>
+<ol>
+<li>Which scheduler selects the next process for CPU? <b>Short-Term Scheduler</b></li>
+<li>Which scheduler controls the degree of multiprogramming? <b>Long-Term Scheduler</b></li>
+<li>Dispatcher latency refers to <b>CPU switching time</b>.</li>
+<li>Which metric should be maximized? <b>CPU Utilization</b></li>
+<li>Which metric should be minimized? <b>Waiting Time</b></li>
+</ol>
+
+<h2>Interview Questions</h2>
+<ol>
+<li>Why is CPU scheduling necessary?</li>
+<li>Differentiate among long-, medium-, and short-term schedulers.</li>
+<li>What is dispatcher latency?</li>
+<li>Explain scheduling criteria with examples.</li>
+<li>How does scheduling improve system performance?</li>
+</ol>
+
+<h2>Practice Questions</h2>
+<ol>
+<li>Draw the relationship among the three schedulers.</li>
+<li>Explain CPU utilization and throughput.</li>
+<li>Differentiate turnaround time, waiting time, and response time.</li>
+</ol>
+
+<h2>References</h2>
+<ul>
+<li>Abraham Silberschatz, Peter B. Galvin & Greg Gagne, <em>Operating System Concepts</em>.</li>
+<li>Andrew S. Tanenbaum & Herbert Bos, <em>Modern Operating Systems</em>.</li>
+<li>William Stallings, <em>Operating Systems: Internals and Design Principles</em>.</li>
+</ul>
+
+<p style="text-align:center;margin-top:40px;">© Dr. Nitin Mishra | Department of CSE | Parul University</p>
+</div>
+</body>
+</html>
