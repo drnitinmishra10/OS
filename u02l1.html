@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operating Systems - Unit 2 Lecture 1: Introduction to Processes</title>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;line-height:1.7;margin:40px;background:#f5f7fb;color:#222}
+.container{max-width:1000px;margin:auto;background:#fff;padding:30px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+h1,h2,h3{color:#0b4f8a}
+table{width:100%;border-collapse:collapse;margin:18px 0}
+th,td{border:1px solid #999;padding:8px}
+th{background:#dcecff}
+.note{background:#eef8ff;border-left:5px solid #0b4f8a;padding:12px}
+.code{background:#272822;color:#f8f8f2;padding:10px;font-family:Consolas,monospace;white-space:pre}
+.footer{text-align:center;margin-top:40px;font-size:.9em;color:#555}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Operating Systems</h1>
+<h2>Unit 2 – Processes, Threads & Process Scheduling</h2>
+<h2>Lecture 1 – Introduction to Processes</h2>
+<p><strong>Prepared By:</strong> Dr. Nitin Mishra<br>
+Professor, Department of Computer Science & Engineering<br>
+Parul University</p>
+
+<h2>Learning Outcomes</h2>
+<ul>
+<li>Define a process and distinguish it from a program.</li>
+<li>Explain process components and relationships.</li>
+<li>Describe process creation and termination.</li>
+<li>Understand the five-state and seven-state process models.</li>
+</ul>
+
+<h2>Introduction</h2>
+<p>An operating system manages hardware and software resources. One of its primary responsibilities is managing
+processes. Every application executed on a computer becomes one or more processes that compete for CPU time,
+memory, files, and I/O devices.</p>
+
+<h2>Program vs Process</h2>
+<table>
+<tr><th>Program</th><th>Process</th></tr>
+<tr><td>Passive set of instructions stored on disk.</td><td>Active instance of a program executing in memory.</td></tr>
+<tr><td>No execution state.</td><td>Has state, memory, registers, and resources.</td></tr>
+<tr><td>Static.</td><td>Dynamic.</td></tr>
+</table>
+
+<h2>Definition of a Process</h2>
+<p>A process is a program in execution together with its execution context, allocated memory, CPU registers,
+open files, and other operating system resources.</p>
+
+<hh2>Components of a Process</hh2>
+<ul>
+<li>Program Code (Text Segment)</li>
+<li>Data Segment (Global variables)</li>
+<li>Heap (Dynamic memory)</li>
+<li>Stack (Function calls and local variables)</li>
+<li>Program Counter</li>
+<li>CPU Registers</li>
+</ul>
+
+<h2>Process Relationships</h2>
+<p>Processes may exist independently or in parent-child relationships. A parent process can create child processes,
+which may execute concurrently and inherit selected resources.</p>
+
+<h3>Parent and Child Process</h3>
+<ul>
+<li>Parent creates child using system calls such as <code>fork()</code> in Linux.</li>
+<li>Child receives a copy of the parent's execution context.</li>
+<li>Parent may wait for the child to finish using <code>wait()</code>.</li>
+</ul>
+
+<div class="code">pid_t pid = fork();
+if(pid==0){
+   printf("Child Process");
+}else{
+   printf("Parent Process");
+}</div>
+
+<h2>Process Creation</h2>
+<ol>
+<li>User requests program execution.</li>
+<li>Operating system allocates a Process Control Block.</li>
+<li>Memory is allocated.</li>
+<li>Executable is loaded.</li>
+<li>Process enters the Ready state.</li>
+</ol>
+
+<h2>Process Termination</h2>
+<ul>
+<li>Normal completion</li>
+<li>Runtime error</li>
+<li>Killed by operating system</li>
+<li>Killed by another process</li>
+</ul>
+
+<h2>Five-State Process Model</h2>
+<table>
+<tr><th>State</th><th>Description</th></tr>
+<tr><td>New</td><td>Process is being created.</td></tr>
+<tr><td>Ready</td><td>Waiting for CPU.</td></tr>
+<tr><td>Running</td><td>Executing on CPU.</td></tr>
+<tr><td>Waiting/Blocked</td><td>Waiting for I/O or an event.</td></tr>
+<tr><td>Terminated</td><td>Execution completed.</td></tr>
+</table>
+
+<h2>Seven-State Process Model</h2>
+<p>The extended model adds <strong>Ready Suspended</strong> and <strong>Blocked Suspended</strong> states to
+support swapping processes to secondary storage when memory is scarce.</p>
+
+<h2>Linux Commands</h2>
+<div class="code">ps
+ps -ef
+top
+htop</div>
+
+<h2>Real-World Example</h2>
+<p>Opening a web browser creates a browser process. Opening multiple tabs often creates additional processes to
+improve security and stability.</p>
+
+<h2>Key Points</h2>
+<ul>
+<li>A program becomes a process when executed.</li>
+<li>Each process has its own memory space and execution context.</li>
+<li>Processes transition through different execution states.</li>
+<li>Parent-child relationships simplify resource management.</li>
+</ul>
+
+<h2>Summary</h2>
+<p>This lecture introduced processes, program versus process, process components, parent-child relationships,
+creation and termination, and the five-state and seven-state process models. These concepts provide the foundation
+for understanding process scheduling in subsequent lectures.</p>
+
+<h2>MCQs</h2>
+<ol>
+<li>Which of the following is an active entity? <b>Answer:</b> Process</li>
+<li>A process in execution waiting for CPU is in which state? <b>Answer:</b> Ready</li>
+<li>Which Linux system call creates a child process? <b>Answer:</b> fork()</li>
+<li>Which memory region stores local variables? <b>Answer:</b> Stack</li>
+<li>Which state indicates process completion? <b>Answer:</b> Terminated</li>
+</ol>
+
+<h2>Interview Questions</h2>
+<ol>
+<li>Differentiate between a process and a program.</li>
+<li>Explain parent and child processes.</li>
+<li>What are the major components of a process?</li>
+<li>Describe the five-state process model.</li>
+<li>Why is process management important?</li>
+</ol>
+
+<h2>Practice Questions</h2>
+<ol>
+<li>Draw the five-state process model.</li>
+<li>Explain process creation in Linux.</li>
+<li>Compare the five-state and seven-state models.</li>
+</ol>
+
+<h2>References</h2>
+<ul>
+<li>Abraham Silberschatz, Peter B. Galvin, Greg Gagne. <i>Operating System Concepts</i>.</li>
+<li>William Stallings. <i>Operating Systems: Internals and Design Principles</i>.</li>
+<li>Andrew S. Tanenbaum & Herbert Bos. <i>Modern Operating Systems</i>.</li>
+</ul>
+
+<div class="footer">© Dr. Nitin Mishra | Department of CSE | Parul University</div>
+</div>
+</body>
+</html>
