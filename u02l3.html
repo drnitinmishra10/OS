@@ -1,0 +1,158 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operating Systems - Unit 2 Lecture 3: Threads</title>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;background:#f5f7fa;margin:40px;line-height:1.7;color:#222}
+.container{max-width:1000px;margin:auto;background:#fff;padding:30px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+h1,h2,h3{color:#0b5394}
+table{width:100%;border-collapse:collapse;margin:18px 0}
+th,td{border:1px solid #999;padding:8px}
+th{background:#d9ecff}
+pre{background:#272822;color:#f8f8f2;padding:10px}
+.note{background:#eef8ff;border-left:5px solid #0b5394;padding:10px}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Operating Systems</h1>
+<h2>Unit 2 – Lecture 3</h2>
+<h2>Threads and Multithreading</h2>
+<p><strong>Prepared By:</strong> Dr. Nitin Mishra<br>
+Professor, Department of Computer Science & Engineering<br>
+Parul University</p>
+
+<h2>Learning Outcomes</h2>
+<ul>
+<li>Understand the concept of threads.</li>
+<li>Differentiate between processes and threads.</li>
+<li>Explain thread states and life cycle.</li>
+<li>Describe user-level and kernel-level threads.</li>
+<li>Understand multithreading models and applications.</li>
+</ul>
+
+<h2>Introduction</h2>
+<p>A thread is the smallest unit of CPU execution. A process may contain one or more threads that share the same memory space while executing independently.</p>
+
+<h2>Process vs Thread</h2>
+<table>
+<tr><th>Process</th><th>Thread</th></tr>
+<tr><td>Independent execution unit</td><td>Lightweight execution unit</td></tr>
+<tr><td>Own memory space</td><td>Shares memory with other threads</td></tr>
+<tr><td>High creation overhead</td><td>Low creation overhead</td></tr>
+<tr><td>Slower context switch</td><td>Faster context switch</td></tr>
+</table>
+
+<h2>Thread States</h2>
+<table>
+<tr><th>State</th><th>Description</th></tr>
+<tr><td>New</td><td>Thread created but not started.</td></tr>
+<tr><td>Runnable</td><td>Ready for CPU execution.</td></tr>
+<tr><td>Running</td><td>Currently executing.</td></tr>
+<tr><td>Blocked/Waiting</td><td>Waiting for I/O or synchronization.</td></tr>
+<tr><td>Terminated</td><td>Execution completed.</td></tr>
+</table>
+
+<h2>Benefits of Threads</h2>
+<ul>
+<li>Improved responsiveness.</li>
+<li>Efficient resource sharing.</li>
+<li>Lower memory consumption.</li>
+<li>Faster communication.</li>
+<li>Better CPU utilization.</li>
+<li>Higher application throughput.</li>
+</ul>
+
+<h2>Types of Threads</h2>
+<h3>1. User-Level Threads (ULT)</h3>
+<ul>
+<li>Managed by user-space libraries.</li>
+<li>Fast creation and switching.</li>
+<li>Kernel is unaware of individual threads.</li>
+<li>Blocking system calls may block the entire process.</li>
+</ul>
+
+<h3>2. Kernel-Level Threads (KLT)</h3>
+<ul>
+<li>Managed directly by the operating system kernel.</li>
+<li>Better scheduling support.</li>
+<li>True parallelism on multicore processors.</li>
+<li>Higher creation overhead than ULT.</li>
+</ul>
+
+<h2>Multithreading</h2>
+<p>Multithreading allows multiple threads within a single process to execute concurrently, improving performance and responsiveness.</p>
+
+<table>
+<tr><th>Model</th><th>Description</th></tr>
+<tr><td>Many-to-One</td><td>Many user threads mapped to one kernel thread.</td></tr>
+<tr><td>One-to-One</td><td>Each user thread mapped to one kernel thread.</td></tr>
+<tr><td>Many-to-Many</td><td>Many user threads mapped to many kernel threads.</td></tr>
+</table>
+
+<h2>Applications of Multithreading</h2>
+<ul>
+<li>Web browsers</li>
+<li>Database servers</li>
+<li>Multiplayer games</li>
+<li>Video streaming</li>
+<li>Web servers</li>
+<li>Mobile applications</li>
+</ul>
+
+<h2>Simple C Example (POSIX Threads)</h2>
+<pre>
+#include &lt;pthread.h&gt;
+void* task(void* arg){
+   printf("Hello from thread");
+   return NULL;
+}
+</pre>
+
+<div class="note">
+<b>Key Idea:</b> Threads share code, data, and files but maintain separate program counters, stacks, and CPU registers.
+</div>
+
+<h2>Summary</h2>
+<p>Threads provide lightweight concurrent execution inside a process. They improve application responsiveness, resource utilization, and performance while reducing context-switch overhead compared to processes.</p>
+
+<h2>MCQs</h2>
+<ol>
+<li>A thread is a <b>lightweight process</b>.</li>
+<li>Threads of a process share <b>memory space</b>.</li>
+<li>Which thread type is managed by the kernel? <b>Kernel-level thread</b>.</li>
+<li>Which model provides true parallelism? <b>One-to-One</b>.</li>
+<li>Each thread has its own <b>stack</b>.</li>
+</ol>
+
+<h2>Interview Questions</h2>
+<ol>
+<li>Differentiate between process and thread.</li>
+<li>What are the advantages of multithreading?</li>
+<li>Explain user-level and kernel-level threads.</li>
+<li>Describe multithreading models.</li>
+<li>Why are threads called lightweight processes?</li>
+</ol>
+
+<h2>Practice Questions</h2>
+<ol>
+<li>Draw the thread life cycle.</li>
+<li>Compare ULT and KLT.</li>
+<li>Explain applications of multithreading.</li>
+</ol>
+
+<h2>References</h2>
+<ul>
+<li>Operating System Concepts – Silberschatz, Galvin &amp; Gagne.</li>
+<li>Modern Operating Systems – Tanenbaum &amp; Bos.</li>
+<li>Operating Systems – William Stallings.</li>
+</ul>
+
+<p style="text-align:center;margin-top:40px">© Dr. Nitin Mishra | Department of CSE | Parul University</p>
+</div>
+</body>
+</html>
