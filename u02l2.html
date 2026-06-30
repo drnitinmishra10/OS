@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operating Systems - Unit 2 Lecture 2: Process Management</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f4f6f9;line-height:1.7;color:#222;margin:40px}
+.wrap{max-width:1000px;margin:auto;background:#fff;padding:30px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+h1,h2,h3{color:#0b5394}
+table{border-collapse:collapse;width:100%;margin:16px 0}
+th,td{border:1px solid #999;padding:8px}
+th{background:#d9ecff}
+pre{background:#272822;color:#f8f8f2;padding:10px;overflow:auto}
+.note{background:#eef8ff;border-left:4px solid #0b5394;padding:10px}
+</style>
+</head>
+<body><div class="wrap">
+<h1>Operating Systems</h1>
+<h2>Unit 2 – Lecture 2</h2>
+<h2>Process Management: Process State Transitions, PCB & Context Switching</h2>
+<p><b>Prepared By:</b> Dr. Nitin Mishra<br>Professor, Department of Computer Science & Engineering<br>Parul University</p>
+
+<h2>Learning Outcomes</h2>
+<ul>
+<li>Understand process state transitions.</li>
+<li>Explain the Process Control Block (PCB).</li>
+<li>Describe context switching and dispatcher.</li>
+<li>Analyze context switching overhead.</li>
+</ul>
+
+<h2>Process State Transition</h2>
+<p>During execution, a process moves among different states depending on CPU availability, I/O events, and completion.</p>
+
+<table>
+<tr><th>Transition</th><th>Description</th></tr>
+<tr><td>New → Ready</td><td>Process admitted by OS.</td></tr>
+<tr><td>Ready → Running</td><td>CPU assigned by scheduler.</td></tr>
+<tr><td>Running → Waiting</td><td>Process requests I/O.</td></tr>
+<tr><td>Waiting → Ready</td><td>I/O completes.</td></tr>
+<tr><td>Running → Ready</td><td>CPU preempted.</td></tr>
+<tr><td>Running → Terminated</td><td>Execution finishes.</td></tr>
+</table>
+
+<h2>Process Control Block (PCB)</h2>
+<p>A PCB is the data structure maintained by the operating system to manage each process.</p>
+
+<table>
+<tr><th>Field</th><th>Purpose</th></tr>
+<tr><td>Process ID (PID)</td><td>Unique identifier</td></tr>
+<tr><td>Process State</td><td>Current execution state</td></tr>
+<tr><td>Program Counter</td><td>Address of next instruction</td></tr>
+<tr><td>CPU Registers</td><td>Saved register values</td></tr>
+<tr><td>Memory Information</td><td>Base, limit, page tables</td></tr>
+<tr><td>I/O Status</td><td>Allocated devices and files</td></tr>
+<tr><td>Scheduling Information</td><td>Priority, queue pointers</td></tr>
+</table>
+
+<div class="note">
+<b>Important:</b> Every process has exactly one PCB while it exists in the system.
+</div>
+
+<h2>Context Switching</h2>
+<p>Context switching is the process of saving the execution context of the currently running process and restoring the context of another process so CPU execution can continue seamlessly.</p>
+
+<h3>Steps</h3>
+<ol>
+<li>Save CPU registers into current PCB.</li>
+<li>Update process state.</li>
+<li>Select next ready process.</li>
+<li>Load registers from new PCB.</li>
+<li>Resume execution.</li>
+</ol>
+
+<h2>Dispatcher</h2>
+<p>The dispatcher transfers CPU control to the process selected by the short-term scheduler.</p>
+
+<h2>Context Switching Overhead</h2>
+<ul>
+<li>No useful computation occurs during switching.</li>
+<li>Frequent switching reduces CPU efficiency.</li>
+<li>Modern processors use hardware support to reduce overhead.</li>
+</ul>
+
+<h2>Linux Commands</h2>
+<pre>ps
+top
+htop
+vmstat
+pidof firefox</pre>
+
+<h2>Real-World Example</h2>
+<p>When listening to music while editing a document, the operating system rapidly switches between both processes, creating the illusion of simultaneous execution.</p>
+
+<h2>Key Points</h2>
+<ul>
+<li>PCB stores complete information about a process.</li>
+<li>Context switching enables multitasking.</li>
+<li>The dispatcher performs the CPU handoff.</li>
+<li>Reducing unnecessary context switches improves performance.</li>
+</ul>
+
+<h2>MCQs</h2>
+<ol>
+<li>PCB stands for <b>Process Control Block</b>.</li>
+<li>Which component stores CPU registers? <b>PCB</b>.</li>
+<li>Which module gives CPU to the selected process? <b>Dispatcher</b>.</li>
+<li>Context switching primarily occurs during <b>process change</b>.</li>
+<li>Excessive context switching causes <b>performance overhead</b>.</li>
+</ol>
+
+<h2>Interview Questions</h2>
+<ol>
+<li>Explain PCB with its fields.</li>
+<li>Why is context switching required?</li>
+<li>What is dispatcher latency?</li>
+<li>Differentiate scheduler and dispatcher.</li>
+<li>What causes context-switch overhead?</li>
+</ol>
+
+<h2>Practice Questions</h2>
+<ol>
+<li>Draw a labeled PCB diagram.</li>
+<li>Explain process state transitions with a neat diagram.</li>
+<li>Write short notes on context switching.</li>
+</ol>
+
+<h2>References</h2>
+<ul>
+<li>Silberschatz, Galvin & Gagne – Operating System Concepts.</li>
+<li>William Stallings – Operating Systems.</li>
+<li>Tanenbaum & Bos – Modern Operating Systems.</li>
+</ul>
+
+<p style="text-align:center;margin-top:40px">© Dr. Nitin Mishra | Department of CSE | Parul University</p>
+</div></body></html>
