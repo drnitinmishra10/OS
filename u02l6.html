@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OS Unit 2 Lecture 6 - Round Robin Scheduling</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f5f7fa;margin:40px;line-height:1.7}
+.c{max-width:1000px;margin:auto;background:#fff;padding:30px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+h1,h2,h3{color:#0b5394}table{width:100%;border-collapse:collapse}th,td{border:1px solid #999;padding:8px;text-align:center}th{background:#d9ecff}
+pre{background:#eee;padding:10px}
+</style></head><body><div class="c">
+<h1>Operating Systems</h1>
+<h2>Unit 2 – Lecture 6</h2>
+<h2>Round Robin Scheduling & Comparison of Scheduling Algorithms</h2>
+<p><b>Prepared By:</b><br>Dr. Nitin Mishra<br>Professor, Department of Computer Science & Engineering<br>Parul University</p>
+
+<h2>Learning Outcomes</h2>
+<ul>
+<li>Explain Round Robin scheduling.</li>
+<li>Understand the role of time quantum.</li>
+<li>Draw Gantt charts and compute WT/TAT.</li>
+<li>Compare FCFS, SJF, SRTF and RR.</li>
+</ul>
+
+<h2>Round Robin (RR) Scheduling</h2>
+<p>Round Robin is a <b>preemptive</b> CPU scheduling algorithm in which each process receives the CPU for a fixed amount of time called the <b>time quantum</b>. If the process does not finish within the quantum, it is preempted and placed at the end of the ready queue.</p>
+
+<h2>Features</h2>
+<ul>
+<li>Fair CPU allocation.</li>
+<li>Suitable for time-sharing systems.</li>
+<li>Good response time.</li>
+<li>Uses circular ready queue.</li>
+</ul>
+
+<h2>Time Quantum</h2>
+<ul>
+<li>Very small quantum → excessive context switching.</li>
+<li>Very large quantum → behaves like FCFS.</li>
+<li>An appropriate quantum balances responsiveness and overhead.</li>
+</ul>
+
+<h2>Solved Example</h2>
+<table>
+<tr><th>Process</th><th>Burst Time</th></tr>
+<tr><td>P1</td><td>5</td></tr>
+<tr><td>P2</td><td>4</td></tr>
+<tr><td>P3</td><td>2</td></tr>
+</table>
+
+<p><b>Time Quantum = 2 ms</b></p>
+<pre>
+Gantt Chart
+0 |P1|2|P2|4|P3|6|P1|8|P2|10|P1|11
+</pre>
+
+<table>
+<tr><th>Process</th><th>Completion</th><th>TAT</th><th>WT</th></tr>
+<tr><td>P1</td><td>11</td><td>11</td><td>6</td></tr>
+<tr><td>P2</td><td>10</td><td>10</td><td>6</td></tr>
+<tr><td>P3</td><td>6</td><td>6</td><td>4</td></tr>
+</table>
+
+<h2>Comparison of Scheduling Algorithms</h2>
+<table>
+<tr><th>Algorithm</th><th>Preemptive</th><th>Response Time</th><th>Starvation</th><th>Suitable For</th></tr>
+<tr><td>FCFS</td><td>No</td><td>Poor</td><td>No</td><td>Batch Systems</td></tr>
+<tr><td>SJF</td><td>No</td><td>Good</td><td>Possible</td><td>Batch Systems</td></tr>
+<tr><td>SRTF</td><td>Yes</td><td>Excellent</td><td>Possible</td><td>Interactive Systems</td></tr>
+<tr><td>Round Robin</td><td>Yes</td><td>Very Good</td><td>No</td><td>Time-sharing Systems</td></tr>
+</table>
+
+<h2>Applications</h2>
+<ul>
+<li>Windows and Linux time-sharing environments.</li>
+<li>Multi-user operating systems.</li>
+<li>Interactive terminals.</li>
+<li>Cloud and virtualization platforms.</li>
+</ul>
+
+<h2>Previous University Questions</h2>
+<ol>
+<li>Explain Round Robin scheduling with a suitable example.</li>
+<li>Differentiate FCFS, SJF and RR.</li>
+<li>What is time quantum? How does it affect system performance?</li>
+<li>Draw the Gantt chart and calculate WT and TAT for RR scheduling.</li>
+</ol>
+
+<h2>MCQs</h2>
+<ol>
+<li>Round Robin is a <b>Preemptive</b> scheduling algorithm.</li>
+<li>The fixed CPU allocation interval is called the <b>Time Quantum</b>.</li>
+<li>If the time quantum is very large, RR behaves like <b>FCFS</b>.</li>
+<li>RR is best suited for <b>Time-sharing systems</b>.</li>
+<li>Very small time quantum increases <b>Context Switching</b>.</li>
+</ol>
+
+<h2>Interview Questions</h2>
+<ol>
+<li>Why is Round Robin preferred for interactive systems?</li>
+<li>How do you select an optimal time quantum?</li>
+<li>Compare RR with FCFS and SJF.</li>
+<li>What are the advantages and limitations of RR?</li>
+<li>What happens if the time quantum is too small or too large?</li>
+</ol>
+
+<h2>Summary</h2>
+<p>Round Robin scheduling provides fair CPU allocation by assigning each process a fixed time slice. It offers good response time and is widely used in modern multitasking operating systems. Choosing an appropriate time quantum is essential for achieving optimal performance.</p>
+
+<h2>References</h2>
+<ul>
+<li>Silberschatz, Galvin &amp; Gagne – <i>Operating System Concepts</i>.</li>
+<li>Tanenbaum &amp; Bos – <i>Modern Operating Systems</i>.</li>
+<li>William Stallings – <i>Operating Systems: Internals and Design Principles</i>.</li>
+</ul>
+
+<p style="text-align:center;margin-top:40px">© Dr. Nitin Mishra | Department of CSE | Parul University</p>
+</div></body></html>
