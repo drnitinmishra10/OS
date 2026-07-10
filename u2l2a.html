@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Context Switching: CPU Management & Process Control</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        header {
+            text-align: center;
+            background-color: #e0e0e0;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border: 2px solid #333;
+        }
+        h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .infographic-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .infographic-container img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #333;
+            border-radius: 8px;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .card {
+            background: #fff;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .card h2 {
+            margin-top: 0;
+            font-size: 1.2rem;
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+            text-transform: uppercase;
+            background-color: #eaeaea;
+            margin: -20px -20px 15px -20px;
+            padding: 10px 20px;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+        }
+        ol {
+            padding-left: 20px;
+        }
+        ol li {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        ol li span {
+            font-weight: normal;
+            display: block;
+            color: #555;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        ul li {
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Context Switching: CPU Management & Process Control</h1>
+    </header>
+
+    <div class="infographic-container">
+        <figure>
+            <img src="fig2.png" alt="Black and white technical line drawing infographic showing the architecture of CPU context switching between Process A and Process B, including PCB data saving/loading, the dispatcher workflow, and overhead impacts.">
+            <figcaption style="margin-top: 10px; font-style: italic; color: #666;">
+                Figure 2: Architectural breakdown of CPU context switching, scheduling steps, and operational overhead.
+            </figcaption>
+        </figure>
+    </div>
+
+    <main class="grid-container">
+        
+        <section class="card">
+            <h2>Steps in Context Switching</h2>
+            <ol>
+                <li>SAVE CPU Registers <span>Save the execution context (EAX, EBX, SP, PC, etc.) into the current Process Control Block (PCB A).</span></li>
+                <li>UPDATE Process State <span>Transition the process state from 'Running' to 'Ready', 'Blocked', or another appropriate state.</span></li>
+                <li>SELECT Next Ready Process <span>The short-term scheduler picks the next eligible process (Process B) from the ready queue.</span></li>
+                <li>LOAD Registers <span>Restore the saved execution context from the new Process Control Block (PCB B) back into the CPU registers.</span></li>
+                <li>RESUME Execution <span>The CPU picks up exactly where Process B last left off and continues execution seamlessly.</span></li>
+            </ol>
+        </section>
+
+        <section class="card">
+            <h2>The Dispatcher</h2>
+            <p>The <strong>Dispatcher</strong> acts as the manager that formally transfers control of the CPU core to the specific process chosen by the short-term scheduler.</p>
+            <p>Its role bridges the gap between selection and actual execution, invoking the context switch mechanism shown in the central loop above.</p>
+        </section>
+
+        <section class="card">
+            <h2>Context Switching Overhead</h2>
+            <ul>
+                <li><strong>No Useful Computation:</strong> The CPU performs pure administrative sorting during a switch; no actual user-space instructions or progress are processed during this window.</li>
+                <li><strong>Efficiency Penalty:</strong> Frequent, rapid switching (due to poor time-slicing or heavy multi-tasking burdens) degrades overall system performance and CPU utilization efficiency.</li>
+                <li><strong>Hardware Mitigation:</strong> Modern processing architectures implement dedicated hardware structures (like multiple register banks) to minimize the physical time required to swap state contexts.</li>
+            </ul>
+        </section>
+
+    </main>
+
+</body>
+</html>
